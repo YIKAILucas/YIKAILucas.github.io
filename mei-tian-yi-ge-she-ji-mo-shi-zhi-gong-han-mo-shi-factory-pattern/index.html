@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="LR逻辑斯蒂回归学习, Lucas的博客">
+    <meta name="keywords" content="设计模式之工厂模式 Factory Pattern, Lucas的博客">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>LR逻辑斯蒂回归学习 | Lucas的博客</title>
+    <title>设计模式之工厂模式 Factory Pattern | Lucas的博客</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -223,12 +223,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">LR逻辑斯蒂回归学习</h1>
+                    <h1 class="description center-align post-title">设计模式之工厂模式 Factory Pattern</h1>
                 </div>
             </div>
         </div>
@@ -250,12 +250,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                <span class="chip bg-color">机器学习</span>
-                            </a>
-                        
-                            <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">算法</span>
+                            <a href="/tags/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                <span class="chip bg-color">每天一个设计模式</span>
                             </a>
                         
                     </div>
@@ -266,8 +262,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                机器学习算法学习
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                设计模式
                             </a>
                         
                     </div>
@@ -279,28 +275,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-06-16
+                    2020-06-28
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-06-28
+                    2020-09-13
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    541
+                    957
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    3 分
                 </div>
                 
 
@@ -315,23 +311,113 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="逻辑斯蒂回归学习"><a href="#逻辑斯蒂回归学习" class="headerlink" title="逻辑斯蒂回归学习"></a>逻辑斯蒂回归学习</h1><h3 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h3><p>$$y = g^{-1} \bigl( w^Tx+b \bigr)$$</p>
-<h3 id="logit-回归"><a href="#logit-回归" class="headerlink" title="logit 回归"></a>logit 回归</h3><p>$$\ln y= w^Tx+b$$</p>
-<p>$$\ln \frac{y}{1-y}$$</p>
-<p>将传统线性回归得到的实值$y = w^Tx+b$ 转换成 0/1 值</p>
-<p>使用 sigmoid 函数$y=\frac{1}{1+e^{-z}}$进行转换<br>$$y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}}$$</p>
-<p>所谓的对数几率回归就是让预测结果逼近$ln\frac{y}{1-y}$ , 即真实标记的对数几率<br>$y$是正例可能性，$1-y$是反例可能性<br>$\frac{y}{1-y}$就是正例的“相对可能性”：正例相对反例的概率</p>
-<p>$$\frac{y}{1-y}= \frac{1}{1+e^{-z}} \cdot \frac{1+e^{-z}}{e^{-z}} =\frac{1}{e^{-z}}$$</p>
-<p>$$\Rightarrow \ln\frac{y}{1-y} = \ln \frac{1}{e^{-z}}=\ln e^z=z$$</p>
-<p>把$y$视为类后验概率$P(y=1|x)$，也就是正例的可能性<br>logit 回归就变成<br>$$\ln\frac{p(y=1|x)}{p(y=0|x)} = w^Tx+b$$</p>
-<p>$$\Downarrow $$</p>
-<p>$$p(y=1|x) = y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}} = \frac{1}{\frac{1+e^{w^Tx+b}}{e^{w^Tx+b}}}= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}} $$</p>
-<p>$$p(y=0|x) = 1-y  = \frac{1}{1+e^{w^Tx+b}}$$</p>
-<h3 id="极大似然法求解模型（Maximun-likelihood-estimation-MLE）"><a href="#极大似然法求解模型（Maximun-likelihood-estimation-MLE）" class="headerlink" title="极大似然法求解模型（Maximun likelihood estimation MLE）"></a>极大似然法求解模型（Maximun likelihood estimation MLE）</h3><p>通俗理解来说，就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值</p>
-<p><a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/u011508640/article/details/72815981">下面对 MLE 的内容来自这个博客</a></p>
-<p>对于这个函数： $p(x|\theta)$ 输入有两个：$x$表示某一个具体的数据； $\theta$表示模型的参数</p>
-<p>如果 $\theta$ 是已知确定的， $x$是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本点 $x$ ，其出现概率是多少。</p>
-<p>如果 $x$ 是已知确定的， $\theta$是变量，这个函数叫做似然函数(likelihood function), 它描述对于不同的模型参数，出现$x$这个样本点的概率是多少。<br><a href="https://www.matongxue.com/madocs/447.html" target="_blank" rel="noopener">MLE 极大似然估计参考</a></p>
+                <h1 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h1><p>Lucas 开了一家兵工厂，这个工厂生产手枪，坦克，飞机<br>生产坦克的流程包括钣金，冲压一系列流程</p>
+<h2 id="简单工厂模式-Simple-Factory-Pattern"><a href="#简单工厂模式-Simple-Factory-Pattern" class="headerlink" title="简单工厂模式 Simple Factory Pattern"></a>简单工厂模式 Simple Factory Pattern</h2><pre class=" language-python"><code class="language-python"><span class="token keyword">from</span> abc <span class="token keyword">import</span> ABCMeta<span class="token punctuation">,</span> abstractmethod
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> sys
+
+<span class="token keyword">class</span> <span class="token class-name">Factory</span><span class="token punctuation">:</span>
+    @staticmethod
+    <span class="token keyword">def</span> <span class="token function">create_weapon</span><span class="token punctuation">(</span>cls<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        model_module <span class="token operator">=</span> __import__<span class="token punctuation">(</span><span class="token string">'FactoryPattern'</span><span class="token punctuation">)</span>
+        weapon <span class="token operator">=</span> getattr<span class="token punctuation">(</span>model_module<span class="token punctuation">,</span> cls<span class="token punctuation">.</span>__name__<span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'工厂创建了%s'</span> <span class="token operator">%</span> <span class="token punctuation">(</span>weapon<span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> weapon
+
+
+<span class="token keyword">class</span> <span class="token class-name">Weapon</span><span class="token punctuation">(</span>metaclass<span class="token operator">=</span>ABCMeta<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    @abstractmethod
+    <span class="token keyword">def</span> <span class="token function">show_power</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Gun</span><span class="token punctuation">(</span>Weapon<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">show_power</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'我是手枪，我可以单兵作战'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Tank</span><span class="token punctuation">(</span>Weapon<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">show_power</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'我是坦克，我提供炮火支援'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">class</span> <span class="token class-name">Helicopter</span><span class="token punctuation">(</span>Weapon<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">def</span> <span class="token function">show_power</span><span class="token punctuation">(</span>self<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'我是直升机，我提供空中侦察'</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">"__main__"</span><span class="token punctuation">:</span>
+    gun <span class="token operator">=</span> Factory<span class="token punctuation">.</span>create_weapon<span class="token punctuation">(</span>Gun<span class="token punctuation">)</span>
+    gun<span class="token punctuation">.</span>show_power<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    tank <span class="token operator">=</span> Factory<span class="token punctuation">.</span>create_weapon<span class="token punctuation">(</span>Tank<span class="token punctuation">)</span>
+    tank<span class="token punctuation">.</span>show_power<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    helicopter <span class="token operator">=</span> Factory<span class="token punctuation">.</span>create_weapon<span class="token punctuation">(</span>Helicopter<span class="token punctuation">)</span>
+    helicopter<span class="token punctuation">.</span>show_power<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre>
+<p>输出结果</p>
+<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Gun</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27828</span><span class="token punctuation">&gt;</span></span>
+我是手枪，我可以单兵作战
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Tank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27860</span><span class="token punctuation">&gt;</span></span>
+我是坦克，我提供炮火支援
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Helicopter</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27898</span><span class="token punctuation">&gt;</span></span>
+我是直升机，我提供空中侦察</code></pre>
+<h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>兵工厂现在接到了海军订单，要新增一个航母产品，建造航母的流程和原有的坦克直升机完全不一样，原有工厂的 create 逻辑不满足航母建造的要求，这时候发明了工厂方法模式，在原有工厂类上添加一个抽象类，具体工厂生产逻辑由子工厂实现。这样不管生产航母还是潜艇，都满足了开闭原则</p>
+<h3 id="多工厂的工厂方法模式"><a href="#多工厂的工厂方法模式" class="headerlink" title="多工厂的工厂方法模式"></a>多工厂的工厂方法模式</h3><p>在工厂方法模式的基础上添加多个工厂类，每个工厂类和产品实现一对一，<br>每个产品对应一个工厂，这样职责清晰，但是复杂度很高，每个扩展的时候都要考虑工厂类和产品类之间的关系，所以在复杂的应用中常常添加一个协调类，用来封装子工厂</p>
+<h2 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h2><p>兵工厂现在又接到了海军陆战队的订单，现在的坦克，分成陆战常规版和海军陆战队专用版，海军陆战队的坦克需要实现抗腐蚀，高刚性，这时候工程师在原有的产品类上再添加一个抽象产品类，这就是抽象工厂模式</p>
+<pre><code>from abc import ABCMeta, abstractmethod
+import os
+import sys
+'''
+抽象工厂模式
+'''
+
+class Factory:
+    @staticmethod
+    def create_weapon(cls):
+        model_module = __import__('AbstractFactory')
+        weapon = getattr(model_module, cls.__name__)()
+        print('工厂创建了%s' % (weapon))
+        return weapon
+
+
+class Weapon(metaclass=ABCMeta):
+    @abstractmethod
+    def show_power(self):
+        pass
+
+class Tank(Weapon):
+    def show_power(self):
+        print('我是坦克，我提供炮火支援')
+
+    @abstractmethod
+    def show_painting(self):
+        pass
+
+
+class NavyTank(Tank):
+    def show_painting(self):
+        print('我是海军耐腐蚀涂装')
+
+class ArmyTank(Tank):
+    def show_painting(self):
+        print('我是陆军沙漠涂装')
+
+if __name__ == "__main__":
+    tank = Factory.create_weapon(ArmyTank)
+    tank.show_power()
+    tank.show_painting()
+    tank = Factory.create_weapon(NavyTank)
+    tank.show_power()
+    tank.show_painting()</code></pre><p>输出结果</p>
+<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.ArmyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c50</span><span class="token punctuation">&gt;</span></span>
+我是坦克，我提供炮火支援
+我是陆军沙漠涂装
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.NavyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c88</span><span class="token punctuation">&gt;</span></span>
+我是坦克，我提供炮火支援
+我是海军耐腐蚀涂装</code></pre>
+<p>抽象工厂是在工厂方法模式基础上在基础产品类上再封装一层，实现单一产品类的多级分类</p>
+<p>抽象工厂模式适合横向扩展，不适合纵向扩展，如果再向下分级，模式会变得非常臃肿</p>
+<h1 id="总结-Summary"><a href="#总结-Summary" class="headerlink" title="总结 Summary"></a>总结 Summary</h1><p>工厂模式是创造类模式，本质上就是为了把对象创建后的属性初始化等等操作封装在工厂类中，避免在业务代码中 new 完对象后，还要进行一大堆赋值等操作</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -375,7 +461,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://yikailucas.github.io/lr-luo-ji-si-di-hui-gui/">https://yikailucas.github.io/lr-luo-ji-si-di-hui-gui/</a>
+                    <a href="https://yikailucas.github.io/mei-tian-yi-ge-she-ji-mo-shi-zhi-gong-han-mo-shi-factory-pattern/">https://yikailucas.github.io/mei-tian-yi-ge-she-ji-mo-shi-zhi-gong-han-mo-shi-factory-pattern/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -413,12 +499,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                                    <span class="chip bg-color">机器学习</span>
-                                </a>
-                            
-                                <a href="/tags/%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">算法</span>
+                                <a href="/tags/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                                    <span class="chip bg-color">每天一个设计模式</span>
                                 </a>
                             
                         </div>
@@ -463,7 +545,7 @@
         repo: 'YIKAILucas.github.io',
         owner: 'YIKAILucas',
         admin: ["YIKAILucas"],
-        id: '2020-06-16T18-33-00',
+        id: '2020-06-28T19-33-00',
         distractionFreeMode: false  // Facebook-like distraction free mode
     });
 
@@ -487,9 +569,61 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/mei-tian-yi-ge-she-ji-mo-shi-zhi-gong-han-mo-shi-factory-pattern/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="设计模式之工厂模式 Factory Pattern">
+                        
+                        <span class="card-title">设计模式之工厂模式 Factory Pattern</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            工厂模式Lucas 开了一家兵工厂，这个工厂生产手枪，坦克，飞机生产坦克的流程包括钣金，冲压一系列流程
+简单工厂模式 Simple Factory Patternfrom abc import ABCMeta, abstractmethod
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-28
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="post-category">
+                                    设计模式
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%AF%8F%E5%A4%A9%E4%B8%80%E4%B8%AA%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+                        <span class="chip bg-color">每天一个设计模式</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
             <div class="card">
                 <a href="/draft/">
                     <div class="card-image">
@@ -510,9 +644,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-25
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -520,63 +654,6 @@
                             
                         </span>
                     </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
-            </div>
-            <div class="card">
-                <a href="/lr-luo-ji-si-di-hui-gui/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/21.jpg" class="responsive-img" alt="LR逻辑斯蒂回归学习">
-                        
-                        <span class="card-title">LR逻辑斯蒂回归学习</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            逻辑斯蒂回归学习广义线性模型$$y = g^{-1} \bigl( w^Tx+b \bigr)$$
-logit 回归$$\ln y= w^Tx+b$$
-$$\ln \frac{y}{1-y}$$
-将传统线性回归得到的实值$y = w^Tx+
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-06-16
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    机器学习算法学习
-                                </a>
-                            
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-                <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">
-                        <span class="chip bg-color">机器学习</span>
-                    </a>
-                    
-                    <a href="/tags/%E7%AE%97%E6%B3%95/">
-                        <span class="chip bg-color">算法</span>
-                    </a>
-                    
                 </div>
                 
             </div>

@@ -289,7 +289,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    957
+                    952
                 </div>
                 
 
@@ -355,11 +355,11 @@
     helicopter<span class="token punctuation">.</span>show_power<span class="token punctuation">(</span><span class="token punctuation">)</span>
 </code></pre>
 <p>输出结果</p>
-<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Gun</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27828</span><span class="token punctuation">&gt;</span></span>
+<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Gun</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27828</span><span class="token punctuation">></span></span>
 我是手枪，我可以单兵作战
-工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Tank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27860</span><span class="token punctuation">&gt;</span></span>
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Tank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27860</span><span class="token punctuation">></span></span>
 我是坦克，我提供炮火支援
-工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Helicopter</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27898</span><span class="token punctuation">&gt;</span></span>
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>FactoryPattern.Helicopter</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff0f0f27898</span><span class="token punctuation">></span></span>
 我是直升机，我提供空中侦察</code></pre>
 <h2 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h2><p>兵工厂现在接到了海军订单，要新增一个航母产品，建造航母的流程和原有的坦克直升机完全不一样，原有工厂的 create 逻辑不满足航母建造的要求，这时候发明了工厂方法模式，在原有工厂类上添加一个抽象类，具体工厂生产逻辑由子工厂实现。这样不管生产航母还是潜艇，都满足了开闭原则</p>
 <h3 id="多工厂的工厂方法模式"><a href="#多工厂的工厂方法模式" class="headerlink" title="多工厂的工厂方法模式"></a>多工厂的工厂方法模式</h3><p>在工厂方法模式的基础上添加多个工厂类，每个工厂类和产品实现一对一，<br>每个产品对应一个工厂，这样职责清晰，但是复杂度很高，每个扩展的时候都要考虑工厂类和产品类之间的关系，所以在复杂的应用中常常添加一个协调类，用来封装子工厂</p>
@@ -409,10 +409,10 @@ if __name__ == "__main__":
     tank = Factory.create_weapon(NavyTank)
     tank.show_power()
     tank.show_painting()</code></pre><p>输出结果</p>
-<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.ArmyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c50</span><span class="token punctuation">&gt;</span></span>
+<pre class=" language-markdown"><code class="language-markdown">工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.ArmyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c50</span><span class="token punctuation">></span></span>
 我是坦克，我提供炮火支援
 我是陆军沙漠涂装
-工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.NavyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c88</span><span class="token punctuation">&gt;</span></span>
+工厂创建了<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>AbstractFactory.NavyTank</span> <span class="token attr-name">object</span> <span class="token attr-name">at</span> <span class="token attr-name">0x7ff7b6733c88</span><span class="token punctuation">></span></span>
 我是坦克，我提供炮火支援
 我是海军耐腐蚀涂装</code></pre>
 <p>抽象工厂是在工厂方法模式基础上在基础产品类上再封装一层，实现单一产品类的多级分类</p>

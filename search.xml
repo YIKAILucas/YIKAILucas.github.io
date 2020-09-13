@@ -67,6 +67,33 @@
     </entry>
     
     
+    
+    <entry>
+      <title>LR逻辑斯蒂回归学习</title>
+      <link href="/python-ji-he/"/>
+      <url>/python-ji-he/</url>
+      
+        <content type="html"><![CDATA[<h2 id="列表List"><a href="#列表List" class="headerlink" title="列表List"></a>列表List</h2><h2 id="元祖Tuple"><a href="#元祖Tuple" class="headerlink" title="元祖Tuple"></a>元祖Tuple</h2><h2 id="字典Dict"><a href="#字典Dict" class="headerlink" title="字典Dict"></a>字典Dict</h2><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习算法学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 机器学习 </tag>
+            
+            <tag> 算法 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
   
   
     

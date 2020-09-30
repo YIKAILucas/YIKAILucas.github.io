@@ -8,7 +8,7 @@
       <link href="/vim-chang-yong-kuai-jie-jian/"/>
       <url>/vim-chang-yong-kuai-jie-jian/</url>
       
-        <content type="html"><![CDATA[<p>VIM常用命令</p><p>Referece:</p><p><a href="https://harttle.land/2015/11/07/vim-cursor.html#header-1" target="_blank" rel="noopener">Vim中如何快速进行光标移动</a><br><a href="https://blog.csdn.net/waxtear/article/details/104172445" target="_blank" rel="noopener">Vim命令理解和记忆</a><br><a href="https://spacevim.org/cn/documentation/" target="_blank" rel="noopener">SpaceVim 官方文档</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<p>VIM常用命令</p><a id="more"></a><p>Referece:</p><p><a href="https://harttle.land/2015/11/07/vim-cursor.html#header-1" target="_blank" rel="noopener">Vim中如何快速进行光标移动</a><br><a href="https://blog.csdn.net/waxtear/article/details/104172445" target="_blank" rel="noopener">Vim命令理解和记忆</a><br><a href="https://spacevim.org/cn/documentation/" target="_blank" rel="noopener">SpaceVim 官方文档</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
@@ -58,7 +58,7 @@
       <link href="/ssh-bao-chi-lian-jie-bu-duan-kai/"/>
       <url>/ssh-bao-chi-lian-jie-bu-duan-kai/</url>
       
-        <content type="html"><![CDATA[<p>经常要通过学校的服务器上交作业, 但是经常登陆完几分钟不操作终端Terminal就卡住了，再也没法操作。</p><p><img src="https://vimeracke.oss-cn-shenzhen.aliyuncs.com/uPic/Kq6Par.png" alt="Kq6Par"></p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>配置 ServerAliveInterval 实现，在 ~/.ssh/config 中加入ssh的间隔发送时间</p><p>ServerAliveInterval 30 #表示ssh客户端每隔30秒给远程主机发送一个no-op(No Operation)包，no-op是无任何操作，这样远程主机就不会关闭这个SSH会话，依靠这个包来维护ssh链接</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<p>经常要通过学校的服务器上交作业, 但是经常登陆完几分钟不操作终端Terminal就卡住了，再也没法操作。</p><a id="more"></a><p><img src="https://vimeracke.oss-cn-shenzhen.aliyuncs.com/uPic/Kq6Par.png" alt="学校服务器"></p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>配置 ServerAliveInterval 实现，在 ~/.ssh/config 中加入ssh的间隔发送时间</p><p>ServerAliveInterval 30 #表示ssh客户端每隔30秒给远程主机发送一个no-op(No Operation)包，no-op是无任何操作，这样远程主机就不会关闭这个SSH会话，依靠这个包来维护ssh链接</p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>
@@ -67,31 +67,6 @@
           
       </categories>
       
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>聊聊排序算法</title>
-      <link href="/liao-liao-pai-xu-suan-fa/"/>
-      <url>/liao-liao-pai-xu-suan-fa/</url>
-      
-        <content type="html"><![CDATA[<p><img src="https://vimeracke.oss-cn-shenzhen.aliyuncs.com/uPic/LXRg6P.jpg" alt="LXRg6P"></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
-      
-      
-      <categories>
-          
-          <category> 算法 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ </tag>
-            
-        </tags>
       
     </entry>
     
@@ -152,7 +127,7 @@
       <link href="/lr-luo-ji-si-di-hui-gui/"/>
       <url>/lr-luo-ji-si-di-hui-gui/</url>
       
-        <content type="html"><![CDATA[<h1 id="逻辑斯蒂回归学习"><a href="#逻辑斯蒂回归学习" class="headerlink" title="逻辑斯蒂回归学习"></a>逻辑斯蒂回归学习</h1><p>逻辑斯蒂回归是经典的机器学习模型，记录一下我学习逻辑斯蒂回归的所得</p><h3 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h3><p>$$y = g^{-1} \bigl( w^Tx+b \bigr)$$</p><h3 id="logit-回归"><a href="#logit-回归" class="headerlink" title="logit 回归"></a>logit 回归</h3><p>$$\ln y= w^Tx+b$$</p><p>$$\ln \frac{y}{1-y}$$</p><p>将传统线性回归得到的实值$y = w^Tx+b$ 转换成 0/1 值</p><p>使用 sigmoid 函数$y=\frac{1}{1+e^{-z}}$进行转换<br>$$y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}}$$</p><p>所谓的对数几率回归就是让预测结果逼近$ln\frac{y}{1-y}$ , 即真实标记的对数几率<br>$y$是正例可能性，$1-y$是反例可能性<br>$\frac{y}{1-y}$就是正例的“相对可能性”：正例相对反例的概率</p><p>$$\frac{y}{1-y}= \frac{1}{1+e^{-z}} \cdot \frac{1+e^{-z}}{e^{-z}} =\frac{1}{e^{-z}}$$</p><p>$$\Rightarrow \ln\frac{y}{1-y} = \ln \frac{1}{e^{-z}}=\ln e^z=z$$</p><p>把$y$视为类后验概率$P(y=1|x)$，也就是正例的可能性<br>logit 回归就变成<br>$$\ln\frac{p(y=1|x)}{p(y=0|x)} = w^Tx+b$$</p><p>$$\Downarrow $$</p><p>$$p(y=1|x) = y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}} = \frac{1}{\frac{1+e^{w^Tx+b}}{e^{w^Tx+b}}}= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}} $$</p><p>$$p(y=0|x) = 1-y  = \frac{1}{1+e^{w^Tx+b}}$$</p><h3 id="极大似然法求解模型（Maximun-likelihood-estimation-MLE）"><a href="#极大似然法求解模型（Maximun-likelihood-estimation-MLE）" class="headerlink" title="极大似然法求解模型（Maximun likelihood estimation MLE）"></a>极大似然法求解模型（Maximun likelihood estimation MLE）</h3><p>通俗理解来说，就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值</p><p><a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/u011508640/article/details/72815981">下面对 MLE 的内容来自这个博客</a></p><p>对于这个函数： $p(x|\theta)$ 输入有两个：$x$表示某一个具体的数据； $\theta$表示模型的参数</p><p>如果 $\theta$ 是已知确定的， $x$是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本点 $x$ ，其出现概率是多少。</p><p>如果 $x$ 是已知确定的， $\theta$是变量，这个函数叫做似然函数(likelihood function), 它描述对于不同的模型参数，出现$x$这个样本点的概率是多少。<br><a href="https://www.matongxue.com/madocs/447.html" target="_blank" rel="noopener">MLE 极大似然估计参考</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+        <content type="html"><![CDATA[<h1 id="逻辑斯蒂回归学习"><a href="#逻辑斯蒂回归学习" class="headerlink" title="逻辑斯蒂回归学习"></a>逻辑斯蒂回归学习</h1><p>逻辑斯蒂回归是经典的机器学习模型，记录一下我学习逻辑斯蒂回归的所得</p><a id="more"></a><h3 id="广义线性模型"><a href="#广义线性模型" class="headerlink" title="广义线性模型"></a>广义线性模型</h3><p>$$y = g^{-1} \bigl( w^Tx+b \bigr)$$</p><h3 id="logit-回归"><a href="#logit-回归" class="headerlink" title="logit 回归"></a>logit 回归</h3><p>$$\ln y= w^Tx+b$$</p><p>$$\ln \frac{y}{1-y}$$</p><p>将传统线性回归得到的实值$y = w^Tx+b$ 转换成 0/1 值</p><p>使用 sigmoid 函数$y=\frac{1}{1+e^{-z}}$进行转换<br>$$y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}}$$</p><p>所谓的对数几率回归就是让预测结果逼近$ln\frac{y}{1-y}$ , 即真实标记的对数几率<br>$y$是正例可能性，$1-y$是反例可能性<br>$\frac{y}{1-y}$就是正例的“相对可能性”：正例相对反例的概率</p><p>$$\frac{y}{1-y}= \frac{1}{1+e^{-z}} \cdot \frac{1+e^{-z}}{e^{-z}} =\frac{1}{e^{-z}}$$</p><p>$$\Rightarrow \ln\frac{y}{1-y} = \ln \frac{1}{e^{-z}}=\ln e^z=z$$</p><p>把$y$视为类后验概率$P(y=1|x)$，也就是正例的可能性<br>logit 回归就变成<br>$$\ln\frac{p(y=1|x)}{p(y=0|x)} = w^Tx+b$$</p><p>$$\Downarrow $$</p><p>$$p(y=1|x) = y=\frac{1}{1+e^{-\bigl( w^Tx+b \bigr)}} = \frac{1}{\frac{1+e^{w^Tx+b}}{e^{w^Tx+b}}}= \frac{e^{w^Tx+b}}{1+e^{w^Tx+b}} $$</p><p>$$p(y=0|x) = 1-y  = \frac{1}{1+e^{w^Tx+b}}$$</p><h3 id="极大似然法求解模型（Maximun-likelihood-estimation-MLE）"><a href="#极大似然法求解模型（Maximun-likelihood-estimation-MLE）" class="headerlink" title="极大似然法求解模型（Maximun likelihood estimation MLE）"></a>极大似然法求解模型（Maximun likelihood estimation MLE）</h3><p>通俗理解来说，就是利用已知的样本结果信息，反推最具有可能（最大概率）导致这些样本结果出现的模型参数值</p><p><a href="https://link.zhihu.com/?target=http%3A//blog.csdn.net/u011508640/article/details/72815981">下面对 MLE 的内容来自这个博客</a></p><p>对于这个函数： $p(x|\theta)$ 输入有两个：$x$表示某一个具体的数据； $\theta$表示模型的参数</p><p>如果 $\theta$ 是已知确定的， $x$是变量，这个函数叫做概率函数(probability function)，它描述对于不同的样本点 $x$ ，其出现概率是多少。</p><p>如果 $x$ 是已知确定的， $\theta$是变量，这个函数叫做似然函数(likelihood function), 它描述对于不同的模型参数，出现$x$这个样本点的概率是多少。<br><a href="https://www.matongxue.com/madocs/447.html" target="_blank" rel="noopener">MLE 极大似然估计参考</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
       
       
       <categories>

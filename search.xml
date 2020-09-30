@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Vim 常用快捷键</title>
+      <link href="/vim-chang-yong-kuai-jie-jian/"/>
+      <url>/vim-chang-yong-kuai-jie-jian/</url>
+      
+        <content type="html"><![CDATA[<p>VIM常用命令</p><p>Referece:</p><p><a href="https://harttle.land/2015/11/07/vim-cursor.html#header-1" target="_blank" rel="noopener">Vim中如何快速进行光标移动</a><br><a href="https://blog.csdn.net/waxtear/article/details/104172445" target="_blank" rel="noopener">Vim命令理解和记忆</a><br><a href="https://spacevim.org/cn/documentation/" target="_blank" rel="noopener">SpaceVim 官方文档</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> VIM </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>配置VIM工作环境</title>
       <link href="/pei-zhi-vim-gong-zuo-huan-jing/"/>
       <url>/pei-zhi-vim-gong-zuo-huan-jing/</url>

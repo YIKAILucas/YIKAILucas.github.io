@@ -4,6 +4,19 @@
   
     
     <entry>
+      <title>hexo 写文章如何排版</title>
+      <link href="/hexo-xie-wen-zhang-ru-he-pai-ban/"/>
+      <url>/hexo-xie-wen-zhang-ru-he-pai-ban/</url>
+      
+        <content type="html"><![CDATA[<p><a href="http://blog.smallerpig.com/set-hexo-show-more-button-on-indexpage.html" target="_blank" rel="noopener">让hexo的首页只显示文章的部分内容而不是全部</a></p><script>        document.querySelectorAll('.github-emoji')          .forEach(el => {            if (!el.dataset.src) { return; }            const img = document.createElement('img');            img.style = 'display:none !important;';            img.src = el.dataset.src;            img.addEventListener('error', () => {              img.remove();              el.style.color = 'inherit';              el.style.backgroundImage = 'none';              el.style.background = 'none';            });            img.addEventListener('load', () => {              img.remove();            });            document.body.appendChild(img);          });      </script>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Vim 常用快捷键</title>
       <link href="/vim-chang-yong-kuai-jie-jian/"/>
       <url>/vim-chang-yong-kuai-jie-jian/</url>
@@ -67,6 +80,12 @@
           
       </categories>
       
+      
+        <tags>
+            
+            <tag> SSH </tag>
+            
+        </tags>
       
     </entry>
     

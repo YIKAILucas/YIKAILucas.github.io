@@ -1,0 +1,1610 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>天合 AI 全面转型小组启动会汇报</title>
+  <style>
+    :root {
+      --ink: #172033;
+      --muted: #607089;
+      --line: #d8e0ec;
+      --paper: #f7f9fc;
+      --panel: #ffffff;
+      --blue: #1457c5;
+      --green: #0f8f72;
+      --amber: #d98913;
+      --red: #c94a4a;
+      --shadow: 0 18px 50px rgba(21, 38, 67, 0.14);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(120deg, rgba(20, 87, 197, 0.08), transparent 38%),
+        linear-gradient(300deg, rgba(15, 143, 114, 0.1), transparent 42%),
+        var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+      overflow: hidden;
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      padding: 3.5vh 4vw;
+    }
+
+    .progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 20;
+      height: 5px;
+      width: 100%;
+      background: rgba(23, 32, 51, 0.08);
+    }
+
+    .progress span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--amber));
+      transition: width 220ms ease;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 3.5vh 4vw;
+      display: none;
+      min-height: 0;
+      padding: clamp(28px, 4vw, 58px);
+      background: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(216, 224, 236, 0.92);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .slide.active {
+      display: flex;
+      flex-direction: column;
+      animation: enter 260ms ease both;
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .slide::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 8px;
+      background: linear-gradient(90deg, var(--blue), var(--green), var(--amber));
+    }
+
+    .kicker {
+      margin: 0 0 16px;
+      color: var(--blue);
+      font-size: clamp(13px, 1.4vw, 18px);
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 1120px;
+      margin-bottom: 18px;
+      font-size: clamp(40px, 5.1vw, 74px);
+      line-height: 1.05;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 24px;
+      font-size: clamp(32px, 4.4vw, 58px);
+      line-height: 1.08;
+      font-weight: 850;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin-bottom: 10px;
+      font-size: clamp(18px, 2vw, 26px);
+      line-height: 1.18;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: clamp(17px, 1.7vw, 24px);
+      line-height: 1.55;
+    }
+
+    strong {
+      color: var(--ink);
+    }
+
+    .hero {
+      justify-content: space-between;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.84) 50%, rgba(255, 255, 255, 0.22) 100%),
+        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=82") center / cover;
+    }
+
+    .hero p {
+      max-width: 760px;
+      color: #344157;
+    }
+
+    .mobile-title {
+      display: none;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 30px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 9px 14px;
+      border: 1px solid rgba(20, 87, 197, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: #26344a;
+      font-size: clamp(14px, 1.3vw, 18px);
+      font-weight: 700;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+      min-height: 0;
+      flex: 1;
+    }
+
+    .question-list {
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .question-list li {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .num {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      min-height: 0;
+    }
+
+    .card {
+      padding: clamp(18px, 2.2vw, 28px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .card p,
+    .card li {
+      font-size: clamp(15px, 1.35vw, 20px);
+    }
+
+    .card.accent-blue {
+      border-top: 6px solid var(--blue);
+    }
+
+    .card.accent-green {
+      border-top: 6px solid var(--green);
+    }
+
+    .card.accent-amber {
+      border-top: 6px solid var(--amber);
+    }
+
+    .icon-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: rgba(20, 87, 197, 0.1);
+      color: var(--blue);
+      font-size: 22px;
+      font-weight: 900;
+    }
+
+    .slide-grid {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.75fr) minmax(520px, 1.25fr);
+      gap: clamp(28px, 4vw, 60px);
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .visual-panel {
+      position: relative;
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(135deg, rgba(20, 87, 197, 0.06), transparent 44%),
+        linear-gradient(315deg, rgba(15, 143, 114, 0.08), transparent 46%),
+        #fff;
+    }
+
+    .step-ribbon {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .step-ribbon .step {
+      position: relative;
+      min-height: 210px;
+      padding: 22px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .step-ribbon .step::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      z-index: 2;
+      width: 24px;
+      height: 24px;
+      border-top: 3px solid rgba(20, 87, 197, 0.42);
+      border-right: 3px solid rgba(20, 87, 197, 0.42);
+      transform: translateY(-50%) rotate(45deg);
+      background: transparent;
+    }
+
+    .step-ribbon .step:last-child::after {
+      display: none;
+    }
+
+    .step-num {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--green);
+      font-size: 34px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .step-ribbon p {
+      font-size: clamp(14px, 1.2vw, 18px);
+    }
+
+    .pillar-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: end;
+      flex: 1;
+      min-height: 0;
+      padding-top: 14px;
+    }
+
+    .pillar {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      min-height: 390px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .pillar::before {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: var(--height);
+      background: linear-gradient(180deg, var(--tone), rgba(255, 255, 255, 0));
+      opacity: 0.22;
+    }
+
+    .pillar > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .pillar strong {
+      display: block;
+      margin-bottom: 14px;
+      color: var(--tone);
+      font-size: clamp(32px, 4.6vw, 64px);
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .scope-map {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .scope-core {
+      display: grid;
+      place-items: center;
+      min-height: 180px;
+      border: 2px solid rgba(20, 87, 197, 0.22);
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(20, 87, 197, 0.12), rgba(15, 143, 114, 0.1)), #fff;
+      text-align: center;
+    }
+
+    .scope-core b {
+      display: block;
+      color: var(--ink);
+      font-size: clamp(22px, 2.5vw, 34px);
+      line-height: 1.15;
+    }
+
+    .scope-core span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .scope-item {
+      position: relative;
+      min-height: 154px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .scope-item::before {
+      content: attr(data-index);
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      color: rgba(20, 87, 197, 0.2);
+      font-size: 38px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .six-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .scope-item {
+      min-height: 154px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .scope-item h3 {
+      color: var(--blue);
+    }
+
+    .scope-item p {
+      font-size: clamp(14px, 1.25vw, 18px);
+    }
+
+    .scope-symmetric {
+      display: grid;
+      grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.86fr) minmax(280px, 1fr);
+      gap: clamp(18px, 2.4vw, 34px);
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .scope-column {
+      display: grid;
+      gap: 18px;
+    }
+
+    .scope-symmetric .scope-item {
+      min-height: 142px;
+      box-shadow: 0 12px 28px rgba(21, 38, 67, 0.06);
+    }
+
+    .scope-symmetric .scope-item.left {
+      border-right: 5px solid var(--blue);
+      text-align: right;
+    }
+
+    .scope-symmetric .scope-item.right {
+      border-left: 5px solid var(--green);
+    }
+
+    .scope-symmetric .scope-item.left::before {
+      left: 18px;
+      right: auto;
+    }
+
+    .scope-center {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 460px;
+    }
+
+    .scope-center::before,
+    .scope-center::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border: 1px solid rgba(20, 87, 197, 0.16);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .scope-center::before {
+      width: 330px;
+      height: 330px;
+    }
+
+    .scope-center::after {
+      width: 230px;
+      height: 230px;
+      border-color: rgba(15, 143, 114, 0.2);
+    }
+
+    .scope-center .scope-core {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 260px);
+      min-height: 260px;
+      border-radius: 50%;
+      box-shadow: 0 22px 48px rgba(20, 87, 197, 0.16);
+    }
+
+    .role-flow {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .role {
+      position: relative;
+      min-height: 250px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .role b {
+      display: block;
+      margin-bottom: 12px;
+      color: var(--blue);
+      font-size: clamp(20px, 2.3vw, 30px);
+    }
+
+    .triad {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .triad::before {
+      content: "";
+      position: absolute;
+      left: 15%;
+      right: 15%;
+      top: 56%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(20, 87, 197, 0.45), transparent);
+    }
+
+    .triad-node {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      min-height: 360px;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(21, 38, 67, 0.08);
+    }
+
+    .triad-node .owner {
+      margin-top: auto;
+      padding-top: 24px;
+      color: var(--green);
+      font-size: clamp(24px, 3vw, 42px);
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .mechanism-map {
+      display: grid;
+      grid-template-columns: 1fr 1fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .mechanism-column {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .mechanism-column h3 {
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--line);
+      color: var(--blue);
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .mini-item {
+      padding: 14px;
+      border-radius: 8px;
+      background: #f5f8fc;
+      color: var(--muted);
+      font-size: clamp(14px, 1.25vw, 18px);
+      line-height: 1.45;
+    }
+
+    .fund-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, rgba(15, 143, 114, 0.12), rgba(217, 137, 19, 0.12)), #fff;
+    }
+
+    .fund-split {
+      display: grid;
+      grid-template-columns: 7fr 3fr;
+      width: 100%;
+      height: 54px;
+      margin: 18px 0;
+      overflow: hidden;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .fund-split span {
+      display: grid;
+      place-items: center;
+    }
+
+    .fund-split span:first-child {
+      background: var(--green);
+    }
+
+    .fund-split span:last-child {
+      background: var(--amber);
+    }
+
+    .pilot-board {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .pilot-card {
+      display: flex;
+      flex-direction: column;
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .pilot-card header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .pilot-card .badge {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--tone);
+      color: #fff;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .pilot-card ul {
+      display: grid;
+      gap: 10px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .pilot-card li {
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: #f5f8fc;
+      font-size: clamp(14px, 1.18vw, 17px);
+      line-height: 1.35;
+    }
+
+    .decision-lanes {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .lane {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 380px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .lane-top {
+      padding: 18px 22px;
+      background: var(--tone);
+      color: #fff;
+      font-size: clamp(20px, 2vw, 28px);
+      font-weight: 900;
+    }
+
+    .lane-body {
+      padding: 22px;
+    }
+
+    .lane-body p,
+    .lane-foot {
+      font-size: clamp(14px, 1.25vw, 18px);
+    }
+
+    .lane-foot {
+      padding: 16px 22px;
+      background: #f5f8fc;
+      color: var(--muted);
+      font-weight: 800;
+    }
+
+    .eval-pyramid {
+      display: grid;
+      grid-template-columns: 1fr 0.8fr;
+      gap: 26px;
+      align-items: center;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .pyramid {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .pyramid-row {
+      min-height: 86px;
+      margin-inline: var(--inset);
+      padding: 18px 24px;
+      border-radius: 8px;
+      background: var(--tone);
+      color: #fff;
+    }
+
+    .pyramid-row b {
+      display: block;
+      margin-bottom: 6px;
+      font-size: clamp(18px, 1.7vw, 24px);
+    }
+
+    .pyramid-row span {
+      font-size: clamp(14px, 1.2vw, 17px);
+      line-height: 1.4;
+      opacity: 0.92;
+    }
+
+    .role-metrics {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric-chip {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .metric-chip b {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--blue);
+      font-size: 20px;
+    }
+
+    .metric-chip span {
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.4;
+    }
+
+    .loop-system {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .loop-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      overflow: hidden;
+    }
+
+    .loop-card::before {
+      content: "";
+      position: absolute;
+      right: -44px;
+      top: -44px;
+      width: 160px;
+      height: 160px;
+      border: 26px solid rgba(20, 87, 197, 0.1);
+      border-radius: 50%;
+    }
+
+    .loop-steps {
+      display: grid;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .loop-step {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: center;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f5f8fc;
+      color: var(--muted);
+      font-size: clamp(14px, 1.2vw, 17px);
+      font-weight: 750;
+    }
+
+    .loop-step span:first-child {
+      display: grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--tone);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .agenda-flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .agenda-card {
+      position: relative;
+      min-height: 126px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .agenda-card::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -9px;
+      width: 16px;
+      height: 16px;
+      border-top: 2px solid rgba(20, 87, 197, 0.35);
+      border-right: 2px solid rgba(20, 87, 197, 0.35);
+      transform: translateY(-50%) rotate(45deg);
+    }
+
+    .agenda-card:nth-child(6)::after,
+    .agenda-card:last-child::after {
+      display: none;
+    }
+
+    .agenda-card b {
+      display: block;
+      margin-bottom: 10px;
+      color: var(--green);
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .agenda-card span {
+      color: var(--ink);
+      font-size: clamp(14px, 1.18vw, 17px);
+      line-height: 1.35;
+      font-weight: 750;
+    }
+
+    .agenda-list {
+      display: grid;
+      gap: 5px;
+      max-width: 1120px;
+    }
+
+    .agenda-row {
+      display: grid;
+      grid-template-columns: 112px 70px 1fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 38px;
+      padding: 5px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .agenda-time {
+      color: var(--blue);
+      font-size: clamp(17px, 1.55vw, 22px);
+      font-weight: 900;
+    }
+
+    .agenda-duration {
+      display: inline-grid;
+      place-items: center;
+      min-height: 34px;
+      border-radius: 999px;
+      background: rgba(15, 143, 114, 0.1);
+      color: var(--green);
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .agenda-topic {
+      color: var(--ink);
+      font-size: clamp(15px, 1.22vw, 18px);
+      font-weight: 780;
+      line-height: 1.35;
+    }
+
+    .agenda-total {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: -12px 0 14px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.3vw, 18px);
+      font-weight: 800;
+    }
+
+    .agenda-total strong {
+      display: inline-grid;
+      place-items: center;
+      min-width: 78px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .agenda-slide h2 {
+      margin-bottom: 12px;
+      font-size: clamp(34px, 4vw, 52px);
+    }
+
+    .mechanism {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .list-block {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .list-block ul {
+      margin: 14px 0 0;
+      padding-left: 1.1em;
+    }
+
+    .list-block li {
+      margin: 10px 0;
+      font-size: clamp(15px, 1.35vw, 20px);
+    }
+
+    .matrix {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .matrix .card {
+      min-height: 310px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+      margin-top: 20px;
+    }
+
+    .phase {
+      padding: 26px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: #fff;
+    }
+
+    .phase .day {
+      margin-bottom: 18px;
+      color: var(--blue);
+      font-size: clamp(36px, 5vw, 68px);
+      line-height: 1;
+      font-weight: 850;
+    }
+
+    .phase ul {
+      margin: 0;
+      padding-left: 1.1em;
+    }
+
+    .phase li {
+      margin-bottom: 10px;
+      font-size: clamp(15px, 1.35vw, 20px);
+    }
+
+    .agenda {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 20px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: agenda;
+    }
+
+    .agenda li {
+      counter-increment: agenda;
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: 14px;
+      align-items: center;
+      min-height: 58px;
+      padding: 12px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      color: var(--ink);
+      font-weight: 700;
+      font-size: clamp(15px, 1.35vw, 20px);
+    }
+
+    .agenda li::before {
+      content: counter(agenda, decimal-leading-zero);
+      color: var(--green);
+      font-weight: 850;
+    }
+
+    .closing {
+      justify-content: center;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82)),
+        url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2200&q=82") center / cover;
+    }
+
+    .closing h2 {
+      max-width: 940px;
+    }
+
+    .controls {
+      position: fixed;
+      right: 4vw;
+      bottom: 3.5vh;
+      z-index: 25;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px;
+      border: 1px solid rgba(216, 224, 236, 0.9);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: 0 10px 28px rgba(21, 38, 67, 0.14);
+      backdrop-filter: blur(12px);
+    }
+
+    button {
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 50%;
+      background: var(--ink);
+      color: #fff;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: var(--blue);
+    }
+
+    .counter {
+      min-width: 64px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .footnote {
+      margin-top: auto;
+      color: #768499;
+      font-size: clamp(12px, 1.1vw, 15px);
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      body {
+        overflow: auto;
+        overflow-x: hidden;
+      }
+
+      .deck {
+        height: auto;
+        min-height: 100vh;
+        padding: 16px;
+      }
+
+      .slide,
+      .slide.active {
+        position: relative;
+        inset: auto;
+        display: flex;
+        min-height: calc(100vh - 32px);
+        margin-bottom: 16px;
+        padding: 28px;
+        overflow: visible;
+      }
+
+      .slide:not(.active) {
+        display: none;
+      }
+
+      .two-col,
+      .cards,
+      .six-grid,
+      .role-flow,
+      .mechanism,
+      .matrix,
+      .timeline,
+      .slide-grid,
+      .step-ribbon,
+      .pillar-board,
+      .scope-map,
+      .scope-symmetric,
+      .triad,
+      .mechanism-map,
+      .pilot-board,
+      .decision-lanes,
+      .eval-pyramid,
+      .loop-system,
+      .agenda-flow,
+      .agenda {
+        grid-template-columns: 1fr;
+      }
+
+      .hero,
+      .closing {
+        background: #fff;
+      }
+
+      h1 {
+        font-size: 38px;
+        line-height: 1.16;
+      }
+
+      .desktop-title {
+        display: none;
+      }
+
+      .mobile-title {
+        display: inline;
+      }
+
+      h2 {
+        font-size: 29px;
+        line-height: 1.16;
+        overflow-wrap: anywhere;
+        word-break: break-all;
+      }
+
+      p,
+      li {
+        font-size: 17px;
+      }
+
+      .slide > * {
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .hero-meta {
+        display: grid;
+        grid-template-columns: repeat(2, max-content);
+        gap: 10px;
+      }
+
+      .pill {
+        min-height: 36px;
+        padding: 7px 11px;
+        font-size: 14px;
+      }
+
+      .controls {
+        right: 16px;
+        bottom: 16px;
+      }
+
+      .scope-item,
+      .role,
+      .matrix .card,
+      .pillar,
+      .triad-node,
+      .lane {
+        min-height: auto;
+      }
+
+      .step-ribbon .step::after,
+      .triad::before,
+      .agenda-card::after {
+        display: none;
+      }
+
+      .scope-core {
+        min-height: 130px;
+      }
+
+      .scope-symmetric .scope-item.left,
+      .scope-symmetric .scope-item.right {
+        text-align: left;
+        border-left: 5px solid var(--blue);
+        border-right: 1px solid var(--line);
+      }
+
+      .scope-symmetric .scope-item.left::before {
+        left: auto;
+        right: 18px;
+      }
+
+      .scope-center {
+        min-height: 220px;
+        order: -1;
+      }
+
+      .scope-center::before {
+        width: 230px;
+        height: 230px;
+      }
+
+      .scope-center::after {
+        width: 170px;
+        height: 170px;
+      }
+
+      .scope-center .scope-core {
+        width: 190px;
+        min-height: 190px;
+      }
+
+      .agenda-row {
+        grid-template-columns: 82px 58px 1fr;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .agenda-time {
+        font-size: 16px;
+      }
+
+      .agenda-duration {
+        font-size: 13px;
+      }
+
+      .agenda-topic {
+        font-size: 15px;
+      }
+
+      .pyramid-row {
+        margin-inline: 0;
+      }
+    }
+
+    @media print {
+      body {
+        overflow: visible;
+        background: #fff;
+      }
+
+      .deck {
+        height: auto;
+        padding: 0;
+      }
+
+      .progress,
+      .controls {
+        display: none;
+      }
+
+      .slide,
+      .slide.active {
+        position: relative;
+        inset: auto;
+        display: flex;
+        width: 100vw;
+        height: 100vh;
+        margin: 0;
+        page-break-after: always;
+        box-shadow: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <main class="deck" aria-label="天合 AI 全面转型小组启动会汇报">
+    <section class="slide hero active">
+      <div>
+        <p class="kicker">AI Transformation Kickoff</p>
+        <h1>天合 AI <span class="desktop-title">全面转型小组启动会</span><span class="mobile-title">全面转型<br>小组启动会</span></h1>
+        <p>以 AI 原生重构天合全球竞争力，打造新能源行业 AI 转型标杆。</p>
+        <div class="hero-meta">
+          <span class="pill">统一认知</span>
+          <span class="pill">明确使命</span>
+          <span class="pill">建立机制</span>
+          <span class="pill">推进试点</span>
+        </div>
+      </div>
+      <p class="footnote">汇报网页 · 支持方向键翻页 · 可直接打印为 PDF</p>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">01 / Key Questions</p>
+      <div class="two-col">
+        <div>
+          <h2>本次会议要回答五个关键问题</h2>
+          <p>先把集团级共识、组织边界和推进节奏对齐，再进入首批场景和资源配置。</p>
+        </div>
+        <ol class="question-list">
+          <li><span class="num">1</span><span>为什么要成立 AI 全面转型小组？</span></li>
+          <li><span class="num">2</span><span>这个小组的集团级使命是什么？</span></li>
+          <li><span class="num">3</span><span>这个小组管什么、不管什么？</span></li>
+          <li><span class="num">4</span><span>各部门、业务团队、技术团队如何协同？</span></li>
+          <li><span class="num">5</span><span>后续 AI 转型工作如何持续推进？</span></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">02 / Meeting Goals</p>
+      <h2>会议目标：从共识到行动的四步对齐</h2>
+      <div class="step-ribbon">
+        <article class="step"><span class="step-num">01</span><h3>统一认知</h3><p>明确 AI 不是工具采购，而是经营、组织和产品能力的系统升级。</p></article>
+        <article class="step"><span class="step-num">02</span><h3>明确使命</h3><p>确认 AI 全面转型小组的集团级定位和长期纲领。</p></article>
+        <article class="step"><span class="step-num">03</span><h3>建立机制</h3><p>定义组织机制、运作机制、核心管控内容和协同规则。</p></article>
+        <article class="step"><span class="step-num">04</span><h3>锁定节奏</h3><p>确定扩大会议、首批试点和 30/60/90 天行动节奏。</p></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">03 / Mission</p>
+      <h2>小组使命：集团 AI 转型的统筹推进组织</h2>
+      <div class="pillar-board">
+        <article class="pillar" style="--height: 64%; --tone: var(--blue);"><strong>01</strong><h3>高韧性敏捷组织</h3><p>重构全链路决策与运营流程，压缩内部协同成本，提升全流程响应敏捷度。</p></article>
+        <article class="pillar" style="--height: 82%; --tone: var(--green);"><strong>02</strong><h3>高溢价产品</h3><p>以 AI 赋能产研提性降本，将 AI 能力作为核心产品差异化标配，实现溢价能力与市场竞争力双升。</p></article>
+        <article class="pillar" style="--height: 54%; --tone: var(--amber);"><strong>03</strong><h3>宽边界盈利</h3><p>对外输出新能源 AI 解决方案，开辟第二增长曲线。</p></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">04 / Governance Scope</p>
+      <h2>小组管控范围：六个核心维度</h2>
+      <div class="scope-symmetric">
+        <div class="scope-column">
+          <article class="scope-item left" data-index="01"><h3>管方向</h3><p>制定总体方向、路线图、阶段目标、平台建设与系统融合方向。</p></article>
+          <article class="scope-item left" data-index="02"><h3>管场景</h3><p>收集、筛选、评估和推动集团级 AI 场景。</p></article>
+          <article class="scope-item left" data-index="03"><h3>管标准</h3><p>制定集团 AI 应用规范，形成统一准入和验收语言。</p></article>
+        </div>
+        <div class="scope-center">
+          <article class="scope-core"><div><b>AI 转型小组</b><span>方向 · 标准 · 平台 · 复用</span></div></article>
+        </div>
+        <div class="scope-column">
+          <article class="scope-item right" data-index="04"><h3>管平台</h3><p>统筹集团级 AI 能力底座建设，沉淀公共能力。</p></article>
+          <article class="scope-item right" data-index="05"><h3>管试点</h3><p>推动高价值场景从想法到 MVP，再到可推广方案。</p></article>
+          <article class="scope-item right" data-index="06"><h3>管推广</h3><p>负责培训、运营、标杆案例包装和集团复制。</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">05 / Responsibility Model</p>
+      <h2>三方协同分工模式</h2>
+      <p>让业务价值、转型进度和技术能力分别有明确 Owner，减少跨部门推进中的责任空白。</p>
+      <div class="triad">
+        <article class="triad-node"><span class="icon-mark">A</span><h3>业务团队</h3><p>判断真实痛点、收益空间和组织验收标准。</p><div class="owner">场景 Owner</div></article>
+        <article class="triad-node"><span class="icon-mark">B</span><h3>AI 转型小组</h3><p>抓方向、标准、复用和集团级资源协同。</p><div class="owner">转型 Owner</div></article>
+        <article class="triad-node"><span class="icon-mark">C</span><h3>技术团队</h3><p>保障 AI 技术能力稳定、可用、可持续交付。</p><div class="owner">能力 Owner</div></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">06 / Operating Mechanism</p>
+      <h2>机制设计：两统一、三授权、配套激励</h2>
+      <div class="mechanism-map">
+        <article class="mechanism-column"><h3>两统一</h3><div class="mini-list"><div class="mini-item"><strong>统一准入规则：</strong>最低投入产出比、可复制性、价值门槛。</div><div class="mini-item"><strong>统一能力底座：</strong>大模型、知识库、数据中台等公共能力层。</div></div></article>
+        <article class="mechanism-column"><h3>三授权</h3><div class="mini-list"><div class="mini-item"><strong>场景立项：</strong>符合准入即可先做 MVP。</div><div class="mini-item"><strong>价值评估：</strong>业务自主评估并组织验收。</div><div class="mini-item"><strong>资源调度：</strong>技术按验证价值匹配资源。</div></div></article>
+        <article class="mechanism-column fund-card"><h3>收益闭环</h3><div class="fund-split"><span>70%</span><span>30%</span></div><p>业务部门业绩 / 集团 AI 转型公共基金</p></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">07 / First Pilots</p>
+      <h2>首批试点：只推进 3-5 个高价值、可复制场景</h2>
+      <div class="pilot-board">
+        <article class="pilot-card" style="--tone: var(--blue);"><header><span class="badge">标</span><h3>高层可见的标杆场景</h3></header><ul><li>集团行业情报与战略分析助手</li><li>高管经营决策助手</li><li>重大项目 / 重点客户洞察助手</li><li>政策、竞品、市场动态分析助手</li></ul></article>
+        <article class="pilot-card" style="--tone: var(--green);"><header><span class="badge">效</span><h3>业务高频刚需场景</h3></header><ul><li>标书 / 解决方案生成助手</li><li>会议纪要与任务追踪助手</li><li>知识库问答助手</li><li>合同、制度、流程问答助手</li></ul></article>
+        <article class="pilot-card" style="--tone: var(--amber);"><header><span class="badge">基</span><h3>能力沉淀型场景</h3></header><ul><li>集团统一知识库</li><li>AI 应用入口平台 / 智能体广场</li><li>任务中心、权限体系与数据接入机制</li><li>AI 使用数据分析平台</li></ul></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">08 / Decision Rules</p>
+      <h2>协同与决策规则：分级分层 + 动态调级</h2>
+      <div class="decision-lanes">
+        <article class="lane" style="--tone: var(--blue);"><div class="lane-top">战略级</div><div class="lane-body"><h3>集团重点标杆 / 跨板块协同</h3><p>由转型小组牵头对齐高管层，按 ROI 与战略价值双维度评分。</p></div><div class="lane-foot">匹配集团级资源</div></article>
+        <article class="lane" style="--tone: var(--green);"><div class="lane-top">业务级</div><div class="lane-body"><h3>单部门刚需 / 不跨板块</h3><p>业务部门按紧急度和投入产出比排序，小组只做准入核验。</p></div><div class="lane-foot">业务自驱推进</div></article>
+        <article class="lane" style="--tone: var(--amber);"><div class="lane-top">创新级</div><div class="lane-body"><h3>探索性 / 低投入</h3><p>开放 10% 年度 AI 资源池，符合准入规则即可快速试错。</p></div><div class="lane-foot">跑通后可动态升级</div></article>
+      </div>
+      <p class="footnote">动态调级：MVP 跑通后可升级为战略级；战略级连续 6 个月不达预期则降级回收资源。</p>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">09 / Evaluation</p>
+      <h2>成效评价：按阶段、按角色分层考核</h2>
+      <div class="eval-pyramid">
+        <div class="pyramid">
+          <div class="pyramid-row" style="--inset: 18%; --tone: var(--amber);"><b>沉淀复用阶段</b><span>可复制性、跨场景适配率、能力复用降本规模</span></div>
+          <div class="pyramid-row" style="--inset: 9%; --tone: var(--green);"><b>规模化推广阶段</b><span>使用率、功能渗透率、流程耗时压缩率</span></div>
+          <div class="pyramid-row" style="--inset: 0; --tone: var(--blue);"><b>MVP 验证阶段</b><span>只看核心价值达标率，不提前要求覆盖度</span></div>
+        </div>
+        <div class="role-metrics">
+          <div class="metric-chip"><b>业务端</b><span>业务价值达成率</span></div>
+          <div class="metric-chip"><b>技术端</b><span>能力复用率、交付及时率</span></div>
+          <div class="metric-chip"><b>转型小组</b><span>全集团 AI 转型整体 ROI</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">10 / Sustainable Motion</p>
+      <h2>持续推进机制：双循环 + 绿色通道</h2>
+      <div class="loop-system">
+        <article class="loop-card" style="--tone: var(--blue);"><span class="icon-mark">小</span><h3>业务自驱小循环</h3><div class="loop-steps"><div class="loop-step"><span>1</span><span>场景提出</span></div><div class="loop-step"><span>2</span><span>MVP 验证</span></div><div class="loop-step"><span>3</span><span>上线迭代</span></div></div><p class="footnote">低于 50 万 / 10 人天的创新项目免审批，最快 7 天启动。</p></article>
+        <article class="loop-card" style="--tone: var(--green);"><span class="icon-mark">大</span><h3>集团赋能大循环</h3><div class="loop-steps"><div class="loop-step"><span>1</span><span>标准化打磨</span></div><div class="loop-step"><span>2</span><span>跨部门推广</span></div><div class="loop-step"><span>3</span><span>沉淀公共底座</span></div></div><p class="footnote">保留月度进度同步会、季度战略复盘会，减少不必要汇报审批。</p></article>
+      </div>
+    </section>
+
+    <section class="slide agenda-slide">
+      <p class="kicker">11 / Formal Agenda</p>
+      <h2>启动会正式议程</h2>
+      <div class="agenda-total"><strong>90min</strong><span>以共识确认和下一步行动闭环为目标</span></div>
+      <div class="agenda-list">
+        <article class="agenda-row"><span class="agenda-time">00-05</span><span class="agenda-duration">5min</span><span class="agenda-topic">开场与会议目标说明</span></article>
+        <article class="agenda-row"><span class="agenda-time">05-15</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 转型背景与公司战略诉求</span></article>
+        <article class="agenda-row"><span class="agenda-time">15-25</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 全面转型小组使命与定位</span></article>
+        <article class="agenda-row"><span class="agenda-time">25-35</span><span class="agenda-duration">10min</span><span class="agenda-topic">小组组织架构与成员分工</span></article>
+        <article class="agenda-row"><span class="agenda-time">35-45</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 转型总体路线图说明</span></article>
+        <article class="agenda-row"><span class="agenda-time">45-55</span><span class="agenda-duration">10min</span><span class="agenda-topic">当前 AI 能力与已有基础盘点</span></article>
+        <article class="agenda-row"><span class="agenda-time">55-65</span><span class="agenda-duration">10min</span><span class="agenda-topic">行业 / 标杆案例分享</span></article>
+        <article class="agenda-row"><span class="agenda-time">65-75</span><span class="agenda-duration">10min</span><span class="agenda-topic">首批试点需求征集说明</span></article>
+        <article class="agenda-row"><span class="agenda-time">75-85</span><span class="agenda-duration">10min</span><span class="agenda-topic">工作机制、协同规则与答疑</span></article>
+        <article class="agenda-row"><span class="agenda-time">85-90</span><span class="agenda-duration">5min</span><span class="agenda-topic">近期行动计划与里程碑确认</span></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">12 / 30-60-90 Plan</p>
+      <h2>近期行动节奏：30 / 60 / 90 天规划</h2>
+      <div class="timeline">
+        <article class="phase">
+          <div class="day">30</div>
+          <h3>对齐与盘点</h3>
+          <ul>
+            <li>召开二次扩大会议</li>
+            <li>确定重点场景清单</li>
+            <li>完成准入规则与评估模板</li>
+          </ul>
+        </article>
+        <article class="phase">
+          <div class="day">60</div>
+          <h3>MVP 验证</h3>
+          <ul>
+            <li>启动 3-5 个首批试点</li>
+            <li>跑通业务验收闭环</li>
+            <li>沉淀平台与数据接入要求</li>
+          </ul>
+        </article>
+        <article class="phase">
+          <div class="day">90</div>
+          <h3>复制与放大</h3>
+          <ul>
+            <li>形成标杆案例包</li>
+            <li>确定推广节奏与资源池</li>
+            <li>完成季度战略复盘</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide closing">
+      <p class="kicker">Next Step</p>
+      <h2>下一步：以少量高价值试点，跑通集团 AI 转型的组织方法和能力底座</h2>
+      <p>后续扩大会议重点讨论：重点场景、首批试点、近期行动计划、协同规则。</p>
+    </section>
+  </main>
+
+  <nav class="controls" aria-label="幻灯片控制">
+    <button id="prevBtn" type="button" title="上一页" aria-label="上一页">‹</button>
+    <span class="counter" id="counter">1 / 13</span>
+    <button id="nextBtn" type="button" title="下一页" aria-label="下一页">›</button>
+  </nav>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll(".slide"));
+    const progressBar = document.getElementById("progressBar");
+    const counter = document.getElementById("counter");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let index = 0;
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => {
+        slide.classList.toggle("active", slideIndex === index);
+      });
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      progressBar.style.width = `${((index + 1) / slides.length) * 100}%`;
+      window.location.hash = `slide-${index + 1}`;
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(index - 1));
+    nextBtn.addEventListener("click", () => showSlide(index + 1));
+
+    document.addEventListener("keydown", (event) => {
+      if (["ArrowRight", "PageDown", " "].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index + 1);
+      }
+      if (["ArrowLeft", "PageUp"].includes(event.key)) {
+        event.preventDefault();
+        showSlide(index - 1);
+      }
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+
+    const initial = Number((window.location.hash.match(/slide-(\d+)/) || [])[1]);
+    showSlide(Number.isFinite(initial) && initial > 0 ? initial - 1 : 0);
+  </script>
+</body>
+</html>

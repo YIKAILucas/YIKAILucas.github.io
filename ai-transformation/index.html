@@ -376,24 +376,31 @@
       display: flex;
       flex-direction: column;
       min-height: 330px;
-      padding: 20px 16px;
+      padding: 26px 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
-      background: #fff;
+      background:
+        linear-gradient(180deg, rgba(20, 87, 197, 0.06), transparent 38%),
+        #fff;
+      box-shadow: 0 12px 28px rgba(21, 38, 67, 0.06);
     }
 
     .duty b {
       display: block;
-      margin-bottom: 14px;
+      min-height: 74px;
+      margin-bottom: 0;
       color: var(--blue);
-      font-size: clamp(22px, 2.2vw, 32px);
+      font-size: clamp(24px, 2.5vw, 36px);
       line-height: 1.05;
       font-weight: 900;
     }
 
     .duty p {
+      margin-top: auto;
       margin-bottom: 0;
-      font-size: clamp(13px, 1.05vw, 16px);
+      padding-top: 28px;
+      border-top: 1px solid var(--line);
+      font-size: clamp(14px, 1.08vw, 17px);
     }
 
     .triad {
@@ -446,17 +453,36 @@
 
     .org {
       display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 22px;
+      grid-template-columns: 0.72fr 1.28fr;
+      grid-template-rows: 168px 1fr;
+      gap: 18px 22px;
       flex: 1;
       min-height: 0;
     }
 
     .org-layer {
-      padding: 24px;
+      padding: 20px 24px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
+    }
+
+    .org-core {
+      grid-column: 1 / -1;
+      min-height: 0;
+      background:
+        linear-gradient(135deg, rgba(20, 87, 197, 0.08), rgba(13, 146, 119, 0.06)),
+        #fff;
+    }
+
+    .org-office {
+      min-height: 300px;
+      border-left: 6px solid var(--blue);
+    }
+
+    .org-squads {
+      min-height: 300px;
+      border-left: 6px solid var(--green);
     }
 
     .member-grid,
@@ -467,18 +493,19 @@
     }
 
     .member-grid {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      margin-top: 12px;
     }
 
     .squad-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .member,
     .team {
       display: grid;
       place-items: center;
-      min-height: 44px;
+      min-height: 36px;
       padding: 9px;
       border-radius: 8px;
       background: #f5f8fc;
@@ -489,42 +516,46 @@
     }
 
     .team {
-      min-height: 90px;
+      min-height: 138px;
       border: 1px solid var(--line);
       background: linear-gradient(135deg, rgba(20, 87, 197, 0.08), rgba(13, 146, 119, 0.08)), #fff;
+      font-size: clamp(16px, 1.35vw, 21px);
     }
 
     .mechanism-grid {
       display: grid;
       grid-template-columns: repeat(5, minmax(0, 1fr));
-      gap: 14px;
+      gap: 18px;
       flex: 1;
       min-height: 0;
+      align-items: stretch;
     }
 
     .mechanism {
       display: flex;
       flex-direction: column;
-      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      min-height: 340px;
+      padding: 28px 20px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
+      text-align: center;
+      box-shadow: 0 12px 28px rgba(21, 38, 67, 0.06);
     }
 
     .mechanism b {
       display: grid;
       place-items: center;
-      width: 42px;
-      height: 42px;
-      margin-bottom: 14px;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 24px;
       border-radius: 50%;
       background: var(--tone);
       color: #fff;
+      font-size: 22px;
       font-weight: 900;
-    }
-
-    .mechanism p {
-      font-size: clamp(13px, 1.08vw, 16px);
     }
 
     .ops-flow {
@@ -1083,7 +1114,7 @@
       <h2>AI 小组组织架构</h2>
       <p>扁平化组织架构：1 个核心小组 + 1 个轻量办公室 + 4 个任务小队。</p>
       <div class="org">
-        <div class="org-layer">
+        <div class="org-layer org-core">
           <h3>核心小组</h3>
           <p>覆盖关键经营与业务职能，承担方向决策和资源协调。</p>
           <div class="member-grid">
@@ -1097,9 +1128,13 @@
             <span class="member">解决方案</span>
           </div>
         </div>
-        <div class="org-layer">
+        <div class="org-layer org-office">
           <h3>轻量 AI 办公室（人 + Agent）</h3>
           <p>轻量化推进中枢，不做层层审批，借助 AI 能力负责“拉通、跟踪、推动、复盘”。</p>
+        </div>
+        <div class="org-layer org-squads">
+          <h3>4 个任务小队</h3>
+          <p>小队独立承接专项任务，围绕平台、数据、场景、机制形成并行推进能力。</p>
           <div class="squad-grid">
             <span class="team">平台底座小队</span>
             <span class="team">数据知识小队</span>
@@ -1114,11 +1149,11 @@
       <p class="kicker">07 / Operating Model</p>
       <h2>AI 转型小组运作机制：分事项类型运作</h2>
       <div class="mechanism-grid">
-        <article class="mechanism" style="--tone: var(--blue);"><b>1</b><h3>战略方向类</h3><p>由 AI 转型办公室 / PMO 准备议题，提交核心小组决策。</p></article>
-        <article class="mechanism" style="--tone: var(--green);"><b>2</b><h3>场景机会类</h3><p>采用业务自驱赛马机制，鼓励业务围绕真实痛点提出场景。</p></article>
-        <article class="mechanism" style="--tone: var(--amber);"><b>3</b><h3>场景投资类</h3><p>采用分级投资决策机制，按投入、风险、复用和战略价值分类。</p></article>
-        <article class="mechanism" style="--tone: var(--cyan);"><b>4</b><h3>组织变革类</h3><p>采用专项协调机制，拉通职责边界、流程重构和跨职能协同。</p></article>
-        <article class="mechanism" style="--tone: var(--red);"><b>5</b><h3>盈利模式类</h3><p>采用商业模式共创机制，推动 AI 能力形成外部智慧能源解决方案。</p></article>
+        <article class="mechanism" style="--tone: var(--blue);"><b>1</b><h3>战略方向类</h3></article>
+        <article class="mechanism" style="--tone: var(--green);"><b>2</b><h3>场景机会类</h3></article>
+        <article class="mechanism" style="--tone: var(--amber);"><b>3</b><h3>场景投资类</h3></article>
+        <article class="mechanism" style="--tone: var(--cyan);"><b>4</b><h3>组织变革类</h3></article>
+        <article class="mechanism" style="--tone: var(--red);"><b>5</b><h3>盈利模式类</h3></article>
       </div>
     </section>
 

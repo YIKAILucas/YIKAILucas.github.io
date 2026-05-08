@@ -7,15 +7,15 @@
   <style>
     :root {
       --ink: #172033;
-      --muted: #607089;
-      --line: #d8e0ec;
-      --paper: #f7f9fc;
-      --panel: #ffffff;
+      --muted: #65748c;
+      --line: #d8e1ee;
+      --paper: #f6f9fd;
       --blue: #1457c5;
-      --green: #0f8f72;
-      --amber: #d98913;
+      --cyan: #0786a8;
+      --green: #0d9277;
+      --amber: #d98b14;
       --red: #c94a4a;
-      --shadow: 0 18px 50px rgba(21, 38, 67, 0.14);
+      --shadow: 0 20px 54px rgba(22, 37, 64, 0.15);
     }
 
     * {
@@ -26,12 +26,28 @@
       margin: 0;
       color: var(--ink);
       background:
-        linear-gradient(120deg, rgba(20, 87, 197, 0.08), transparent 38%),
-        linear-gradient(300deg, rgba(15, 143, 114, 0.1), transparent 42%),
+        linear-gradient(135deg, rgba(20, 87, 197, 0.08), transparent 36%),
+        linear-gradient(315deg, rgba(13, 146, 119, 0.1), transparent 40%),
         var(--paper);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
-      letter-spacing: 0;
       overflow: hidden;
+      letter-spacing: 0;
+    }
+
+    .progress {
+      position: fixed;
+      inset: 0 0 auto;
+      z-index: 30;
+      height: 5px;
+      background: rgba(23, 32, 51, 0.08);
+    }
+
+    .progress span {
+      display: block;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--amber));
+      transition: width 220ms ease;
     }
 
     .deck {
@@ -41,41 +57,23 @@
       padding: 3.5vh 4vw;
     }
 
-    .progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 20;
-      height: 5px;
-      width: 100%;
-      background: rgba(23, 32, 51, 0.08);
-    }
-
-    .progress span {
-      display: block;
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, var(--blue), var(--green), var(--amber));
-      transition: width 220ms ease;
-    }
-
     .slide {
       position: absolute;
       inset: 3.5vh 4vw;
       display: none;
+      flex-direction: column;
       min-height: 0;
       padding: clamp(28px, 4vw, 58px);
-      background: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(216, 224, 236, 0.92);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
       overflow: hidden;
+      border: 1px solid rgba(216, 225, 238, 0.94);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: var(--shadow);
     }
 
     .slide.active {
       display: flex;
-      flex-direction: column;
-      animation: enter 260ms ease both;
+      animation: enter 240ms ease both;
     }
 
     @keyframes enter {
@@ -92,16 +90,30 @@
     .slide::before {
       content: "";
       position: absolute;
-      inset: 0 0 auto 0;
+      inset: 0 0 auto;
       height: 8px;
-      background: linear-gradient(90deg, var(--blue), var(--green), var(--amber));
+      background: linear-gradient(90deg, var(--blue), var(--cyan), var(--green), var(--amber));
+    }
+
+    .hero {
+      justify-content: space-between;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.88) 54%, rgba(255, 255, 255, 0.24) 100%),
+        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=82") center / cover;
+    }
+
+    .closing {
+      justify-content: center;
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.84)),
+        url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2200&q=82") center / cover;
     }
 
     .kicker {
-      margin: 0 0 16px;
+      margin: 0 0 14px;
       color: var(--blue);
-      font-size: clamp(13px, 1.4vw, 18px);
-      font-weight: 750;
+      font-size: clamp(13px, 1.2vw, 17px);
+      font-weight: 850;
       text-transform: uppercase;
     }
 
@@ -115,58 +127,50 @@
     h1 {
       max-width: 1120px;
       margin-bottom: 18px;
-      font-size: clamp(40px, 5.1vw, 74px);
-      line-height: 1.05;
-      font-weight: 850;
+      font-size: clamp(42px, 5.2vw, 76px);
+      line-height: 1.06;
+      font-weight: 900;
       letter-spacing: 0;
     }
 
     h2 {
-      margin-bottom: 24px;
-      font-size: clamp(32px, 4.4vw, 58px);
+      margin-bottom: 22px;
+      font-size: clamp(32px, 4.1vw, 56px);
       line-height: 1.08;
-      font-weight: 850;
+      font-weight: 900;
       letter-spacing: 0;
     }
 
     h3 {
       margin-bottom: 10px;
-      font-size: clamp(18px, 2vw, 26px);
+      font-size: clamp(18px, 1.8vw, 25px);
       line-height: 1.18;
+      font-weight: 850;
     }
 
     p,
     li {
       color: var(--muted);
-      font-size: clamp(17px, 1.7vw, 24px);
-      line-height: 1.55;
+      font-size: clamp(16px, 1.4vw, 22px);
+      line-height: 1.5;
     }
 
     strong {
       color: var(--ink);
     }
 
-    .hero {
-      justify-content: space-between;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.84) 50%, rgba(255, 255, 255, 0.22) 100%),
-        url("https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2200&q=82") center / cover;
+    .subhead {
+      max-width: 980px;
+      color: #40506a;
+      font-size: clamp(20px, 2vw, 28px);
+      font-weight: 720;
     }
 
-    .hero p {
-      max-width: 760px;
-      color: #344157;
-    }
-
-    .mobile-title {
-      display: none;
-    }
-
-    .hero-meta {
+    .pill-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      margin-top: 30px;
+      gap: 12px;
+      margin-top: 28px;
     }
 
     .pill {
@@ -176,24 +180,31 @@
       padding: 9px 14px;
       border: 1px solid rgba(20, 87, 197, 0.18);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.76);
+      background: rgba(255, 255, 255, 0.74);
       color: #26344a;
-      font-size: clamp(14px, 1.3vw, 18px);
-      font-weight: 700;
+      font-size: clamp(14px, 1.2vw, 18px);
+      font-weight: 760;
+    }
+
+    .footnote {
+      margin-top: auto;
+      color: #76849a;
+      font-size: clamp(12px, 1.05vw, 15px);
+      font-weight: 760;
     }
 
     .two-col {
       display: grid;
-      grid-template-columns: 0.95fr 1.05fr;
-      gap: clamp(24px, 4vw, 56px);
+      grid-template-columns: 0.88fr 1.12fr;
+      gap: clamp(26px, 4vw, 60px);
       align-items: center;
-      min-height: 0;
       flex: 1;
+      min-height: 0;
     }
 
     .question-list {
       display: grid;
-      gap: 14px;
+      gap: 12px;
       margin: 0;
       padding: 0;
       list-style: none;
@@ -204,145 +215,113 @@
       grid-template-columns: 42px 1fr;
       gap: 14px;
       align-items: start;
-      padding: 16px 18px;
+      padding: 15px 18px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
       color: var(--ink);
-      font-weight: 700;
+      font-size: clamp(16px, 1.45vw, 20px);
+      font-weight: 780;
     }
 
-    .num {
-      display: inline-grid;
+    .num,
+    .badge {
+      display: grid;
       place-items: center;
-      width: 34px;
-      height: 34px;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 auto;
       border-radius: 50%;
       background: var(--blue);
       color: #fff;
       font-size: 15px;
-      font-weight: 800;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      min-height: 0;
-    }
-
-    .card {
-      padding: clamp(18px, 2.2vw, 28px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-    }
-
-    .card p,
-    .card li {
-      font-size: clamp(15px, 1.35vw, 20px);
-    }
-
-    .card.accent-blue {
-      border-top: 6px solid var(--blue);
-    }
-
-    .card.accent-green {
-      border-top: 6px solid var(--green);
-    }
-
-    .card.accent-amber {
-      border-top: 6px solid var(--amber);
-    }
-
-    .icon-mark {
-      display: inline-grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      margin-bottom: 14px;
-      border-radius: 50%;
-      background: rgba(20, 87, 197, 0.1);
-      color: var(--blue);
-      font-size: 22px;
       font-weight: 900;
     }
 
-    .slide-grid {
+    .goal-grid {
       display: grid;
-      grid-template-columns: minmax(280px, 0.75fr) minmax(520px, 1.25fr);
-      gap: clamp(28px, 4vw, 60px);
-      align-items: center;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
       flex: 1;
-      min-height: 0;
+      align-content: center;
     }
 
-    .visual-panel {
-      position: relative;
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(135deg, rgba(20, 87, 197, 0.06), transparent 44%),
-        linear-gradient(315deg, rgba(15, 143, 114, 0.08), transparent 46%),
-        #fff;
-    }
-
-    .step-ribbon {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .step-ribbon .step {
-      position: relative;
-      min-height: 210px;
-      padding: 22px 18px;
+    .goal,
+    .panel,
+    .card {
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
     }
 
-    .step-ribbon .step::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: -13px;
-      z-index: 2;
-      width: 24px;
-      height: 24px;
-      border-top: 3px solid rgba(20, 87, 197, 0.42);
-      border-right: 3px solid rgba(20, 87, 197, 0.42);
-      transform: translateY(-50%) rotate(45deg);
-      background: transparent;
+    .goal {
+      min-height: 150px;
+      padding: 22px;
+      background:
+        linear-gradient(135deg, rgba(20, 87, 197, 0.05), transparent),
+        #fff;
     }
 
-    .step-ribbon .step:last-child::after {
-      display: none;
-    }
-
-    .step-num {
+    .goal b {
       display: block;
-      margin-bottom: 12px;
-      color: var(--green);
-      font-size: 34px;
+      margin-bottom: 10px;
+      color: var(--blue);
+      font-size: 30px;
       line-height: 1;
       font-weight: 900;
     }
 
-    .step-ribbon p {
-      font-size: clamp(14px, 1.2vw, 18px);
+    .goal span {
+      color: var(--ink);
+      font-size: clamp(17px, 1.45vw, 21px);
+      font-weight: 780;
+      line-height: 1.35;
+    }
+
+    .mission-wrap {
+      display: grid;
+      grid-template-columns: minmax(340px, 0.8fr) minmax(560px, 1.2fr);
+      gap: 28px;
+      align-items: stretch;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .panel {
+      padding: 26px;
+    }
+
+    .statement {
+      display: grid;
+      gap: 16px;
+    }
+
+    .statement-item {
+      padding: 18px;
+      border-radius: 8px;
+      background: #f5f8fc;
+    }
+
+    .statement-item small {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--blue);
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .statement-item p {
+      margin-bottom: 0;
+      color: var(--ink);
+      font-size: clamp(18px, 1.55vw, 23px);
+      font-weight: 780;
     }
 
     .pillar-board {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: end;
-      flex: 1;
-      min-height: 0;
-      padding-top: 14px;
+      gap: 16px;
+      height: 100%;
     }
 
     .pillar {
@@ -350,11 +329,11 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      min-height: 390px;
-      padding: 28px;
+      min-height: 410px;
+      padding: 26px;
+      overflow: hidden;
       border: 1px solid var(--line);
       border-radius: 8px;
-      overflow: hidden;
       background: #fff;
     }
 
@@ -363,7 +342,7 @@
       position: absolute;
       inset: auto 0 0;
       height: var(--height);
-      background: linear-gradient(180deg, var(--tone), rgba(255, 255, 255, 0));
+      background: linear-gradient(180deg, var(--tone), transparent);
       opacity: 0.22;
     }
 
@@ -374,201 +353,68 @@
 
     .pillar strong {
       display: block;
-      margin-bottom: 14px;
-      color: var(--tone);
-      font-size: clamp(32px, 4.6vw, 64px);
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .scope-map {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .scope-core {
-      display: grid;
-      place-items: center;
-      min-height: 180px;
-      border: 2px solid rgba(20, 87, 197, 0.22);
-      border-radius: 8px;
-      background: linear-gradient(135deg, rgba(20, 87, 197, 0.12), rgba(15, 143, 114, 0.1)), #fff;
-      text-align: center;
-    }
-
-    .scope-core b {
-      display: block;
-      color: var(--ink);
-      font-size: clamp(22px, 2.5vw, 34px);
-      line-height: 1.15;
-    }
-
-    .scope-core span {
-      display: block;
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 16px;
-      font-weight: 700;
-    }
-
-    .scope-item {
-      position: relative;
-      min-height: 154px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .scope-item::before {
-      content: attr(data-index);
-      position: absolute;
-      top: 18px;
-      right: 18px;
-      color: rgba(20, 87, 197, 0.2);
-      font-size: 38px;
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .six-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .scope-item {
-      min-height: 154px;
-      padding: 20px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .scope-item h3 {
-      color: var(--blue);
-    }
-
-    .scope-item p {
-      font-size: clamp(14px, 1.25vw, 18px);
-    }
-
-    .scope-symmetric {
-      display: grid;
-      grid-template-columns: minmax(280px, 1fr) minmax(280px, 0.86fr) minmax(280px, 1fr);
-      gap: clamp(18px, 2.4vw, 34px);
-      align-items: center;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .scope-column {
-      display: grid;
-      gap: 18px;
-    }
-
-    .scope-symmetric .scope-item {
-      min-height: 142px;
-      box-shadow: 0 12px 28px rgba(21, 38, 67, 0.06);
-    }
-
-    .scope-symmetric .scope-item.left {
-      border-right: 5px solid var(--blue);
-      text-align: right;
-    }
-
-    .scope-symmetric .scope-item.right {
-      border-left: 5px solid var(--green);
-    }
-
-    .scope-symmetric .scope-item.left::before {
-      left: 18px;
-      right: auto;
-    }
-
-    .scope-center {
-      position: relative;
-      display: grid;
-      place-items: center;
-      min-height: 460px;
-    }
-
-    .scope-center::before,
-    .scope-center::after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      border: 1px solid rgba(20, 87, 197, 0.16);
-      border-radius: 50%;
-      transform: translate(-50%, -50%);
-    }
-
-    .scope-center::before {
-      width: 330px;
-      height: 330px;
-    }
-
-    .scope-center::after {
-      width: 230px;
-      height: 230px;
-      border-color: rgba(15, 143, 114, 0.2);
-    }
-
-    .scope-center .scope-core {
-      position: relative;
-      z-index: 1;
-      width: min(100%, 260px);
-      min-height: 260px;
-      border-radius: 50%;
-      box-shadow: 0 22px 48px rgba(20, 87, 197, 0.16);
-    }
-
-    .role-flow {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .role {
-      position: relative;
-      min-height: 250px;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .role b {
-      display: block;
       margin-bottom: 12px;
+      color: var(--tone);
+      font-size: clamp(38px, 5vw, 68px);
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .pillar p {
+      font-size: clamp(14px, 1.16vw, 17px);
+    }
+
+    .duty-table {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 12px;
+      flex: 1;
+      align-items: stretch;
+    }
+
+    .duty {
+      display: flex;
+      flex-direction: column;
+      min-height: 330px;
+      padding: 20px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .duty b {
+      display: block;
+      margin-bottom: 14px;
       color: var(--blue);
-      font-size: clamp(20px, 2.3vw, 30px);
+      font-size: clamp(22px, 2.2vw, 32px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .duty p {
+      margin-bottom: 0;
+      font-size: clamp(13px, 1.05vw, 16px);
     }
 
     .triad {
       position: relative;
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
+      gap: 20px;
+      align-items: end;
       flex: 1;
       min-height: 0;
+      padding-top: 28px;
     }
 
     .triad::before {
       content: "";
       position: absolute;
-      left: 15%;
-      right: 15%;
+      left: 13%;
+      right: 13%;
       top: 56%;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(20, 87, 197, 0.45), transparent);
+      background: linear-gradient(90deg, transparent, rgba(20, 87, 197, 0.42), transparent);
     }
 
     .triad-node {
@@ -576,70 +422,193 @@
       z-index: 1;
       display: flex;
       flex-direction: column;
-      min-height: 360px;
-      padding: 28px;
+      min-height: 320px;
+      padding: 26px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
       box-shadow: 0 12px 28px rgba(21, 38, 67, 0.08);
     }
 
-    .triad-node .owner {
+    .triad-node.primary {
+      align-self: start;
+      min-height: 360px;
+      border-top: 7px solid var(--blue);
+    }
+
+    .owner {
       margin-top: auto;
-      padding-top: 24px;
       color: var(--green);
-      font-size: clamp(24px, 3vw, 42px);
+      font-size: clamp(22px, 2.7vw, 38px);
       line-height: 1;
       font-weight: 900;
     }
 
-    .mechanism-map {
+    .org {
       display: grid;
-      grid-template-columns: 1fr 1fr 0.8fr;
-      gap: 18px;
-      align-items: stretch;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 22px;
       flex: 1;
       min-height: 0;
     }
 
-    .mechanism-column {
+    .org-layer {
       padding: 24px;
       border: 1px solid var(--line);
       border-radius: 8px;
       background: #fff;
     }
 
-    .mechanism-column h3 {
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--line);
-      color: var(--blue);
-    }
-
-    .mini-list {
+    .member-grid,
+    .squad-grid {
       display: grid;
-      gap: 12px;
+      gap: 10px;
       margin-top: 16px;
     }
 
-    .mini-item {
-      padding: 14px;
+    .member-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .squad-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .member,
+    .team {
+      display: grid;
+      place-items: center;
+      min-height: 44px;
+      padding: 9px;
+      border-radius: 8px;
+      background: #f5f8fc;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 780;
+      text-align: center;
+    }
+
+    .team {
+      min-height: 90px;
+      border: 1px solid var(--line);
+      background: linear-gradient(135deg, rgba(20, 87, 197, 0.08), rgba(13, 146, 119, 0.08)), #fff;
+    }
+
+    .mechanism-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .mechanism {
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .mechanism b {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 14px;
+      border-radius: 50%;
+      background: var(--tone);
+      color: #fff;
+      font-weight: 900;
+    }
+
+    .mechanism p {
+      font-size: clamp(13px, 1.08vw, 16px);
+    }
+
+    .ops-flow {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 26px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .output-list {
+      display: grid;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .output-list span {
+      display: block;
+      padding: 12px 14px;
       border-radius: 8px;
       background: #f5f8fc;
       color: var(--muted);
-      font-size: clamp(14px, 1.25vw, 18px);
-      line-height: 1.45;
+      font-size: clamp(14px, 1.12vw, 17px);
+      font-weight: 720;
     }
 
-    .fund-card {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(145deg, rgba(15, 143, 114, 0.12), rgba(217, 137, 19, 0.12)), #fff;
+    .decision-lanes {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      flex: 1;
+      min-height: 0;
     }
 
-    .fund-split {
+    .lane {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 330px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .lane-top {
+      padding: 16px 18px;
+      background: var(--tone);
+      color: #fff;
+      font-size: clamp(18px, 1.8vw, 25px);
+      font-weight: 900;
+    }
+
+    .lane-body {
+      padding: 18px;
+    }
+
+    .lane-body p,
+    .lane-foot {
+      font-size: clamp(13px, 1.08vw, 16px);
+    }
+
+    .lane-foot {
+      padding: 14px 18px;
+      background: #f5f8fc;
+      color: var(--muted);
+      font-weight: 780;
+    }
+
+    .incentives {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .incentive {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .split {
       display: grid;
       grid-template-columns: 7fr 3fr;
       width: 100%;
@@ -652,17 +621,117 @@
       font-weight: 900;
     }
 
-    .fund-split span {
+    .split span {
       display: grid;
       place-items: center;
     }
 
-    .fund-split span:first-child {
+    .split span:first-child {
       background: var(--green);
     }
 
-    .fund-split span:last-child {
+    .split span:last-child {
       background: var(--amber);
+    }
+
+    .roadmap {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .phase {
+      padding: 26px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .phase .day {
+      margin-bottom: 14px;
+      color: var(--blue);
+      font-size: clamp(42px, 5.2vw, 76px);
+      line-height: 1;
+      font-weight: 900;
+    }
+
+    .phase ul {
+      margin: 0;
+      padding-left: 1.1em;
+    }
+
+    .phase li {
+      margin-bottom: 9px;
+      font-size: clamp(14px, 1.15vw, 18px);
+    }
+
+    .agenda-slide h2 {
+      margin-bottom: 12px;
+      font-size: clamp(34px, 4vw, 52px);
+    }
+
+    .agenda-total {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: -10px 0 14px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.25vw, 18px);
+      font-weight: 800;
+    }
+
+    .agenda-total strong {
+      display: inline-grid;
+      place-items: center;
+      min-width: 78px;
+      height: 36px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+    }
+
+    .agenda-list {
+      display: grid;
+      gap: 10px;
+      max-width: 1120px;
+    }
+
+    .agenda-row {
+      display: grid;
+      grid-template-columns: 148px 70px 1fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 62px;
+      padding: 10px 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .agenda-time {
+      color: var(--blue);
+      font-size: clamp(17px, 1.55vw, 22px);
+      font-weight: 900;
+    }
+
+    .agenda-duration {
+      display: inline-grid;
+      place-items: center;
+      min-height: 32px;
+      border-radius: 999px;
+      background: rgba(13, 146, 119, 0.1);
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .agenda-topic {
+      color: var(--ink);
+      font-size: clamp(15px, 1.2vw, 18px);
+      font-weight: 780;
+      line-height: 1.35;
     }
 
     .pilot-board {
@@ -689,18 +758,6 @@
       margin-bottom: 18px;
     }
 
-    .pilot-card .badge {
-      display: grid;
-      place-items: center;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: var(--tone);
-      color: #fff;
-      font-size: 18px;
-      font-weight: 900;
-    }
-
     .pilot-card ul {
       display: grid;
       gap: 10px;
@@ -713,411 +770,33 @@
       padding: 12px 14px;
       border-radius: 8px;
       background: #f5f8fc;
-      font-size: clamp(14px, 1.18vw, 17px);
+      font-size: clamp(13px, 1.08vw, 16px);
       line-height: 1.35;
-    }
-
-    .decision-lanes {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .lane {
-      display: grid;
-      grid-template-rows: auto 1fr auto;
-      min-height: 380px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .lane-top {
-      padding: 18px 22px;
-      background: var(--tone);
-      color: #fff;
-      font-size: clamp(20px, 2vw, 28px);
-      font-weight: 900;
-    }
-
-    .lane-body {
-      padding: 22px;
-    }
-
-    .lane-body p,
-    .lane-foot {
-      font-size: clamp(14px, 1.25vw, 18px);
-    }
-
-    .lane-foot {
-      padding: 16px 22px;
-      background: #f5f8fc;
-      color: var(--muted);
-      font-weight: 800;
-    }
-
-    .eval-pyramid {
-      display: grid;
-      grid-template-columns: 1fr 0.8fr;
-      gap: 26px;
-      align-items: center;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .pyramid {
-      display: grid;
-      gap: 12px;
-      align-content: center;
-    }
-
-    .pyramid-row {
-      min-height: 86px;
-      margin-inline: var(--inset);
-      padding: 18px 24px;
-      border-radius: 8px;
-      background: var(--tone);
-      color: #fff;
-    }
-
-    .pyramid-row b {
-      display: block;
-      margin-bottom: 6px;
-      font-size: clamp(18px, 1.7vw, 24px);
-    }
-
-    .pyramid-row span {
-      font-size: clamp(14px, 1.2vw, 17px);
-      line-height: 1.4;
-      opacity: 0.92;
-    }
-
-    .role-metrics {
-      display: grid;
-      gap: 14px;
-    }
-
-    .metric-chip {
-      padding: 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .metric-chip b {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--blue);
-      font-size: 20px;
-    }
-
-    .metric-chip span {
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.4;
-    }
-
-    .loop-system {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 22px;
-      align-items: stretch;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .loop-card {
-      position: relative;
-      padding: 28px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      overflow: hidden;
-    }
-
-    .loop-card::before {
-      content: "";
-      position: absolute;
-      right: -44px;
-      top: -44px;
-      width: 160px;
-      height: 160px;
-      border: 26px solid rgba(20, 87, 197, 0.1);
-      border-radius: 50%;
-    }
-
-    .loop-steps {
-      display: grid;
-      gap: 12px;
-      margin-top: 20px;
-    }
-
-    .loop-step {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 12px;
-      align-items: center;
-      padding: 12px;
-      border-radius: 8px;
-      background: #f5f8fc;
-      color: var(--muted);
-      font-size: clamp(14px, 1.2vw, 17px);
-      font-weight: 750;
-    }
-
-    .loop-step span:first-child {
-      display: grid;
-      place-items: center;
-      width: 34px;
-      height: 34px;
-      border-radius: 50%;
-      background: var(--tone);
-      color: #fff;
-      font-weight: 900;
-    }
-
-    .agenda-flow {
-      display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .agenda-card {
-      position: relative;
-      min-height: 126px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .agenda-card::after {
-      content: "";
-      position: absolute;
-      top: 50%;
-      right: -9px;
-      width: 16px;
-      height: 16px;
-      border-top: 2px solid rgba(20, 87, 197, 0.35);
-      border-right: 2px solid rgba(20, 87, 197, 0.35);
-      transform: translateY(-50%) rotate(45deg);
-    }
-
-    .agenda-card:nth-child(6)::after,
-    .agenda-card:last-child::after {
-      display: none;
-    }
-
-    .agenda-card b {
-      display: block;
-      margin-bottom: 10px;
-      color: var(--green);
-      font-size: 24px;
-      line-height: 1;
-      font-weight: 900;
-    }
-
-    .agenda-card span {
-      color: var(--ink);
-      font-size: clamp(14px, 1.18vw, 17px);
-      line-height: 1.35;
-      font-weight: 750;
-    }
-
-    .agenda-list {
-      display: grid;
-      gap: 5px;
-      max-width: 1120px;
-    }
-
-    .agenda-row {
-      display: grid;
-      grid-template-columns: 148px 70px 1fr;
-      gap: 18px;
-      align-items: center;
-      min-height: 38px;
-      padding: 5px 18px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .agenda-time {
-      color: var(--blue);
-      font-size: clamp(17px, 1.55vw, 22px);
-      font-weight: 900;
-    }
-
-    .agenda-duration {
-      display: inline-grid;
-      place-items: center;
-      min-height: 34px;
-      border-radius: 999px;
-      background: rgba(15, 143, 114, 0.1);
-      color: var(--green);
-      font-size: 15px;
-      font-weight: 900;
-    }
-
-    .agenda-topic {
-      color: var(--ink);
-      font-size: clamp(15px, 1.22vw, 18px);
-      font-weight: 780;
-      line-height: 1.35;
-    }
-
-    .agenda-total {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      margin: -12px 0 14px;
-      color: var(--muted);
-      font-size: clamp(16px, 1.3vw, 18px);
-      font-weight: 800;
-    }
-
-    .agenda-total strong {
-      display: inline-grid;
-      place-items: center;
-      min-width: 78px;
-      height: 36px;
-      border-radius: 999px;
-      background: var(--blue);
-      color: #fff;
-    }
-
-    .agenda-slide h2 {
-      margin-bottom: 12px;
-      font-size: clamp(34px, 4vw, 52px);
-    }
-
-    .mechanism {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      flex: 1;
-      min-height: 0;
-    }
-
-    .list-block {
-      padding: 26px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-    }
-
-    .list-block ul {
-      margin: 14px 0 0;
-      padding-left: 1.1em;
-    }
-
-    .list-block li {
-      margin: 10px 0;
-      font-size: clamp(15px, 1.35vw, 20px);
-    }
-
-    .matrix {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .matrix .card {
-      min-height: 310px;
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 18px;
-      align-items: stretch;
-      margin-top: 20px;
-    }
-
-    .phase {
-      padding: 26px;
-      border-radius: 8px;
-      border: 1px solid var(--line);
-      background: #fff;
-    }
-
-    .phase .day {
-      margin-bottom: 18px;
-      color: var(--blue);
-      font-size: clamp(36px, 5vw, 68px);
-      line-height: 1;
-      font-weight: 850;
-    }
-
-    .phase ul {
-      margin: 0;
-      padding-left: 1.1em;
-    }
-
-    .phase li {
-      margin-bottom: 10px;
-      font-size: clamp(15px, 1.35vw, 20px);
-    }
-
-    .agenda {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 12px 20px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      counter-reset: agenda;
-    }
-
-    .agenda li {
-      counter-increment: agenda;
-      display: grid;
-      grid-template-columns: 44px 1fr;
-      gap: 14px;
-      align-items: center;
-      min-height: 58px;
-      padding: 12px 16px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      color: var(--ink);
-      font-weight: 700;
-      font-size: clamp(15px, 1.35vw, 20px);
-    }
-
-    .agenda li::before {
-      content: counter(agenda, decimal-leading-zero);
-      color: var(--green);
-      font-weight: 850;
-    }
-
-    .closing {
-      justify-content: center;
-      background:
-        linear-gradient(90deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.82)),
-        url("https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=2200&q=82") center / cover;
     }
 
     .closing h2 {
+      max-width: 1050px;
+    }
+
+    .closing p {
       max-width: 940px;
+      color: #344157;
+      font-size: clamp(20px, 1.9vw, 28px);
+      font-weight: 720;
     }
 
     .controls {
       position: fixed;
       right: 4vw;
       bottom: 3.5vh;
-      z-index: 25;
+      z-index: 40;
       display: flex;
       align-items: center;
       gap: 10px;
       padding: 8px;
-      border: 1px solid rgba(216, 224, 236, 0.9);
+      border: 1px solid rgba(216, 225, 238, 0.9);
       border-radius: 999px;
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 10px 28px rgba(21, 38, 67, 0.14);
       backdrop-filter: blur(12px);
     }
@@ -1134,23 +813,12 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: var(--blue);
-    }
-
     .counter {
       min-width: 64px;
       text-align: center;
       color: var(--muted);
       font-size: 14px;
-      font-weight: 800;
-    }
-
-    .footnote {
-      margin-top: auto;
-      color: #768499;
-      font-size: clamp(12px, 1.1vw, 15px);
-      font-weight: 700;
+      font-weight: 900;
     }
 
     @media (max-width: 900px) {
@@ -1180,26 +848,35 @@
         display: none;
       }
 
+      h1 {
+        font-size: 38px;
+        line-height: 1.16;
+      }
+
+      h2 {
+        font-size: 30px;
+        line-height: 1.16;
+        overflow-wrap: anywhere;
+      }
+
+      p,
+      li {
+        font-size: 17px;
+      }
+
       .two-col,
-      .cards,
-      .six-grid,
-      .role-flow,
-      .mechanism,
-      .matrix,
-      .timeline,
-      .slide-grid,
-      .step-ribbon,
+      .goal-grid,
+      .mission-wrap,
       .pillar-board,
-      .scope-map,
-      .scope-symmetric,
+      .duty-table,
       .triad,
-      .mechanism-map,
-      .pilot-board,
+      .org,
+      .mechanism-grid,
+      .ops-flow,
       .decision-lanes,
-      .eval-pyramid,
-      .loop-system,
-      .agenda-flow,
-      .agenda {
+      .incentives,
+      .roadmap,
+      .pilot-board {
         grid-template-columns: 1fr;
       }
 
@@ -1208,124 +885,43 @@
         background: #fff;
       }
 
-      h1 {
-        font-size: 38px;
-        line-height: 1.16;
-      }
-
-      .desktop-title {
+      .triad::before {
         display: none;
       }
 
-      .mobile-title {
-        display: inline;
-      }
-
-      h2 {
-        font-size: 29px;
-        line-height: 1.16;
-        overflow-wrap: anywhere;
-        word-break: break-all;
-      }
-
-      p,
-      li {
-        font-size: 17px;
-      }
-
-      .slide > * {
-        min-width: 0;
-        max-width: 100%;
-      }
-
-      .hero-meta {
-        display: grid;
-        grid-template-columns: repeat(2, max-content);
-        gap: 10px;
-      }
-
-      .pill {
-        min-height: 36px;
-        padding: 7px 11px;
-        font-size: 14px;
-      }
-
-      .controls {
-        right: 16px;
-        bottom: 16px;
-      }
-
-      .scope-item,
-      .role,
-      .matrix .card,
       .pillar,
+      .duty,
       .triad-node,
       .lane {
         min-height: auto;
       }
 
-      .step-ribbon .step::after,
-      .triad::before,
-      .agenda-card::after {
-        display: none;
-      }
-
-      .scope-core {
-        min-height: 130px;
-      }
-
-      .scope-symmetric .scope-item.left,
-      .scope-symmetric .scope-item.right {
-        text-align: left;
-        border-left: 5px solid var(--blue);
-        border-right: 1px solid var(--line);
-      }
-
-      .scope-symmetric .scope-item.left::before {
-        left: auto;
-        right: 18px;
-      }
-
-      .scope-center {
-        min-height: 220px;
-        order: -1;
-      }
-
-      .scope-center::before {
-        width: 230px;
-        height: 230px;
-      }
-
-      .scope-center::after {
-        width: 170px;
-        height: 170px;
-      }
-
-      .scope-center .scope-core {
-        width: 190px;
-        min-height: 190px;
+      .member-grid,
+      .squad-grid {
+        grid-template-columns: 1fr;
       }
 
       .agenda-row {
-        grid-template-columns: 82px 58px 1fr;
+        grid-template-columns: 104px 58px 1fr;
         gap: 10px;
-        padding: 12px;
+        padding: 10px 12px;
       }
 
       .agenda-time {
-        font-size: 16px;
+        font-size: 15px;
       }
 
       .agenda-duration {
-        font-size: 13px;
+        font-size: 12px;
       }
 
       .agenda-topic {
         font-size: 15px;
       }
 
-      .pyramid-row {
-        margin-inline: 0;
+      .controls {
+        right: 16px;
+        bottom: 16px;
       }
     }
 
@@ -1366,13 +962,13 @@
     <section class="slide hero active">
       <div>
         <p class="kicker">AI Transformation Kickoff</p>
-        <h1>天合 AI <span class="desktop-title">全面转型小组启动会</span><span class="mobile-title">全面转型<br>小组启动会</span></h1>
-        <p>以 AI 原生重构天合全球竞争力，打造新能源行业 AI 转型标杆。</p>
-        <div class="hero-meta">
-          <span class="pill">统一认知</span>
-          <span class="pill">明确使命</span>
-          <span class="pill">建立机制</span>
-          <span class="pill">推进试点</span>
+        <h1>天合 AI 全面转型小组启动会</h1>
+        <p class="subhead">以 AI 原生重构天合全球竞争力，打造新能源行业 AI 转型标杆。</p>
+        <div class="pill-row">
+          <span class="pill">集团级统筹</span>
+          <span class="pill">组织与流程重构</span>
+          <span class="pill">业务自驱赛马</span>
+          <span class="pill">30 / 90 / 180 天行动</span>
         </div>
       </div>
       <p class="footnote">汇报网页 · 支持方向键翻页 · 可直接打印为 PDF</p>
@@ -1383,7 +979,7 @@
       <div class="two-col">
         <div>
           <h2>本次会议要回答五个关键问题</h2>
-          <p>先把集团级共识、组织边界和推进节奏对齐，再进入首批场景和资源配置。</p>
+          <p>先建立集团级共识，再明确组织、职责、协同与行动节奏。</p>
         </div>
         <ol class="question-list">
           <li><span class="num">1</span><span>为什么要成立 AI 全面转型小组？</span></li>
@@ -1397,160 +993,317 @@
 
     <section class="slide">
       <p class="kicker">02 / Meeting Goals</p>
-      <h2>会议目标：从共识到行动的四步对齐</h2>
-      <div class="step-ribbon">
-        <article class="step"><span class="step-num">01</span><h3>统一认知</h3><p>明确 AI 不是工具采购，而是经营、组织和产品能力的系统升级。</p></article>
-        <article class="step"><span class="step-num">02</span><h3>明确使命</h3><p>确认 AI 全面转型小组的集团级定位和长期纲领。</p></article>
-        <article class="step"><span class="step-num">03</span><h3>建立机制</h3><p>定义组织机制、运作机制、核心管控内容和协同规则。</p></article>
-        <article class="step"><span class="step-num">04</span><h3>锁定节奏</h3><p>确定扩大会议、首批试点和 30/60/90 天行动节奏。</p></article>
+      <h2>会议核心目标</h2>
+      <div class="goal-grid">
+        <article class="goal"><b>01</b><span>统一全集团 AI 转型认知</span></article>
+        <article class="goal"><b>02</b><span>明确 AI 全面转型小组的目标与使命</span></article>
+        <article class="goal"><b>03</b><span>明确小组组织架构</span></article>
+        <article class="goal"><b>04</b><span>明确小组核心职责与运作机制</span></article>
+        <article class="goal"><b>05</b><span>明确 30 / 90 / 180 天行动方案</span></article>
+        <article class="goal"><b>06</b><span>确定后续扩大会议时间</span></article>
       </div>
     </section>
 
     <section class="slide">
       <p class="kicker">03 / Mission</p>
-      <h2>小组使命：集团 AI 转型的统筹推进组织</h2>
-      <div class="pillar-board">
-        <article class="pillar" style="--height: 64%; --tone: var(--blue);"><strong>01</strong><h3>高韧性敏捷组织</h3><p>重构全链路决策与运营流程，压缩内部协同成本，提升全流程响应敏捷度。</p></article>
-        <article class="pillar" style="--height: 82%; --tone: var(--green);"><strong>02</strong><h3>高溢价产品</h3><p>以 AI 赋能产研提性降本，将 AI 能力作为核心产品差异化标配，实现溢价能力与市场竞争力双升。</p></article>
-        <article class="pillar" style="--height: 54%; --tone: var(--amber);"><strong>03</strong><h3>宽边界盈利</h3><p>对外输出新能源 AI 解决方案，开辟第二增长曲线。</p></article>
+      <h2>AI 转型认知和小组使命</h2>
+      <div class="mission-wrap">
+        <div class="panel statement">
+          <div class="statement-item">
+            <small>战略纲领</small>
+            <p>以 AI 原生重构天合全球竞争力，打造新能源行业 AI 转型标杆。</p>
+          </div>
+          <div class="statement-item">
+            <small>组织定位</small>
+            <p>天合光能集团 AI 转型的统筹推进组织。</p>
+          </div>
+        </div>
+        <div class="pillar-board">
+          <article class="pillar" style="--height: 66%; --tone: var(--blue);">
+            <strong>01</strong>
+            <h3>高韧性敏捷组织</h3>
+            <p>重构全链路决策与运营流程，压缩内部协同成本，提升全流程响应敏捷度。</p>
+          </article>
+          <article class="pillar" style="--height: 82%; --tone: var(--green);">
+            <strong>02</strong>
+            <h3>高竞争力产品</h3>
+            <p>以 AI 赋能研发、制造、供应链与质量管理，提升性能、可靠性与差异化能力。</p>
+          </article>
+          <article class="pillar" style="--height: 72%; --tone: var(--amber);">
+            <strong>03</strong>
+            <h3>高价值能源解决方案</h3>
+            <p>打造 AI 驱动的智慧能源解决方案能力，输出从产品、系统到运营优化的一体化价值。</p>
+          </article>
+        </div>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">04 / Governance Scope</p>
-      <h2>小组管控范围：六个核心维度</h2>
-      <div class="scope-symmetric">
-        <div class="scope-column">
-          <article class="scope-item left" data-index="01"><h3>管方向</h3><p>制定总体方向、路线图、阶段目标、平台建设与系统融合方向。</p></article>
-          <article class="scope-item left" data-index="02"><h3>管场景</h3><p>收集、筛选、评估和推动集团级 AI 场景。</p></article>
-          <article class="scope-item left" data-index="03"><h3>管标准</h3><p>制定集团 AI 应用规范，形成统一准入和验收语言。</p></article>
-        </div>
-        <div class="scope-center">
-          <article class="scope-core"><div><b>AI 转型小组</b><span>方向 · 标准 · 平台 · 复用</span></div></article>
-        </div>
-        <div class="scope-column">
-          <article class="scope-item right" data-index="04"><h3>管平台</h3><p>统筹集团级 AI 能力底座建设，沉淀公共能力。</p></article>
-          <article class="scope-item right" data-index="05"><h3>管试点</h3><p>推动高价值场景从想法到 MVP，再到可推广方案。</p></article>
-          <article class="scope-item right" data-index="06"><h3>管推广</h3><p>负责培训、运营、标杆案例包装和集团复制。</p></article>
-        </div>
+      <p class="kicker">04 / Responsibilities</p>
+      <h2>为达成全面 AI 转型，小组要做 N 件事</h2>
+      <div class="duty-table">
+        <article class="duty"><b>定方向</b><p>制定集团 AI 转型战略、路线图和年度目标。</p></article>
+        <article class="duty"><b>建文化</b><p>宣导 AI 原生文化，推动全员主动用 AI、提场景、改流程。</p></article>
+        <article class="duty"><b>调组织</b><p>建立高效 AI 组织，建立 AI 流程。</p></article>
+        <article class="duty"><b>管场景</b><p>建立 AI 能力池、场景池，形成可持续输入。</p></article>
+        <article class="duty"><b>定指标</b><p>明确收益核算、价值评估、激励分配和公共基金机制。</p></article>
+        <article class="duty"><b>管投资</b><p>负责核心 AI 项目立项、投资决策和资源配置。</p></article>
+        <article class="duty"><b>验成果</b><p>制定目标里程碑和验收标准，定期复盘转型成效。</p></article>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">05 / Responsibility Model</p>
-      <h2>三方协同分工模式</h2>
-      <p>让业务价值、转型进度和技术能力分别有明确 Owner，减少跨部门推进中的责任空白。</p>
+      <p class="kicker">05 / Ownership</p>
+      <h2>AI 小组与集团其他部门的权责</h2>
+      <p>采用三方协同分工模式，AI 转型小组位于中上方，负责牵引整体转型。</p>
       <div class="triad">
-        <article class="triad-node"><span class="icon-mark">A</span><h3>业务团队</h3><p>判断真实痛点、收益空间和组织验收标准。</p><div class="owner">场景 Owner</div></article>
-        <article class="triad-node"><span class="icon-mark">B</span><h3>AI 转型小组</h3><p>抓方向、标准、复用和集团级资源协同。</p><div class="owner">转型 Owner</div></article>
-        <article class="triad-node"><span class="icon-mark">C</span><h3>技术团队</h3><p>保障 AI 技术能力稳定、可用、可持续交付。</p><div class="owner">能力 Owner</div></article>
+        <article class="triad-node">
+          <span class="badge">A</span>
+          <h3>业务团队</h3>
+          <p>提出真实业务场景，组织业务验收，对场景落地的业务价值负责。</p>
+          <div class="owner">AI 场景 Owner</div>
+        </article>
+        <article class="triad-node primary">
+          <span class="badge">B</span>
+          <h3>AI 转型小组</h3>
+          <p>统筹方向、机制、资源、指标和复盘，对转型整体进度与成效负责。</p>
+          <div class="owner">AI 转型 Owner</div>
+        </article>
+        <article class="triad-node">
+          <span class="badge">C</span>
+          <h3>技术团队</h3>
+          <p>建设平台、模型、数据与系统能力，对 AI 技术能力稳定性、可用性负责。</p>
+          <div class="owner">AI 能力 Owner</div>
+        </article>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">06 / Operating Mechanism</p>
-      <h2>机制设计：两统一、三授权、配套激励</h2>
-      <div class="mechanism-map">
-        <article class="mechanism-column"><h3>两统一</h3><div class="mini-list"><div class="mini-item"><strong>统一准入规则：</strong>最低投入产出比、可复制性、价值门槛。</div><div class="mini-item"><strong>统一能力底座：</strong>大模型、知识库、数据中台等公共能力层。</div></div></article>
-        <article class="mechanism-column"><h3>三授权</h3><div class="mini-list"><div class="mini-item"><strong>场景立项：</strong>符合准入即可先做 MVP。</div><div class="mini-item"><strong>价值评估：</strong>业务自主评估并组织验收。</div><div class="mini-item"><strong>资源调度：</strong>技术按验证价值匹配资源。</div></div></article>
-        <article class="mechanism-column fund-card"><h3>收益闭环</h3><div class="fund-split"><span>70%</span><span>30%</span></div><p>业务部门业绩 / 集团 AI 转型公共基金</p></article>
+      <p class="kicker">06 / Organization</p>
+      <h2>AI 小组组织架构</h2>
+      <p>扁平化组织架构：1 个核心小组 + 1 个轻量办公室 + 4 个任务小队。</p>
+      <div class="org">
+        <div class="org-layer">
+          <h3>核心小组</h3>
+          <p>覆盖关键经营与业务职能，承担方向决策和资源协调。</p>
+          <div class="member-grid">
+            <span class="member">AI</span>
+            <span class="member">研发</span>
+            <span class="member">制造</span>
+            <span class="member">供应链</span>
+            <span class="member">营销</span>
+            <span class="member">财务</span>
+            <span class="member">HR</span>
+            <span class="member">解决方案</span>
+          </div>
+        </div>
+        <div class="org-layer">
+          <h3>轻量 AI 办公室（人 + Agent）</h3>
+          <p>轻量化推进中枢，不做层层审批，借助 AI 能力负责“拉通、跟踪、推动、复盘”。</p>
+          <div class="squad-grid">
+            <span class="team">平台底座小队</span>
+            <span class="team">数据知识小队</span>
+            <span class="team">业务场景小队</span>
+            <span class="team">机制与赋能小队</span>
+          </div>
+        </div>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">07 / First Pilots</p>
-      <h2>首批试点：只推进 3-5 个高价值、可复制场景</h2>
-      <div class="pilot-board">
-        <article class="pilot-card" style="--tone: var(--blue);"><header><span class="badge">标</span><h3>高层可见的标杆场景</h3></header><ul><li>集团行业情报与战略分析助手</li><li>高管经营决策助手</li><li>重大项目 / 重点客户洞察助手</li><li>政策、竞品、市场动态分析助手</li></ul></article>
-        <article class="pilot-card" style="--tone: var(--green);"><header><span class="badge">效</span><h3>业务高频刚需场景</h3></header><ul><li>标书 / 解决方案生成助手</li><li>会议纪要与任务追踪助手</li><li>知识库问答助手</li><li>合同、制度、流程问答助手</li></ul></article>
-        <article class="pilot-card" style="--tone: var(--amber);"><header><span class="badge">基</span><h3>能力沉淀型场景</h3></header><ul><li>集团统一知识库</li><li>AI 应用入口平台 / 智能体广场</li><li>任务中心、权限体系与数据接入机制</li><li>AI 使用数据分析平台</li></ul></article>
+      <p class="kicker">07 / Operating Model</p>
+      <h2>AI 转型小组运作机制：分事项类型运作</h2>
+      <div class="mechanism-grid">
+        <article class="mechanism" style="--tone: var(--blue);"><b>1</b><h3>战略方向类</h3><p>由 AI 转型办公室 / PMO 准备议题，提交核心小组决策。</p></article>
+        <article class="mechanism" style="--tone: var(--green);"><b>2</b><h3>场景机会类</h3><p>采用业务自驱赛马机制，鼓励业务围绕真实痛点提出场景。</p></article>
+        <article class="mechanism" style="--tone: var(--amber);"><b>3</b><h3>场景投资类</h3><p>采用分级投资决策机制，按投入、风险、复用和战略价值分类。</p></article>
+        <article class="mechanism" style="--tone: var(--cyan);"><b>4</b><h3>组织变革类</h3><p>采用专项协调机制，拉通职责边界、流程重构和跨职能协同。</p></article>
+        <article class="mechanism" style="--tone: var(--red);"><b>5</b><h3>盈利模式类</h3><p>采用商业模式共创机制，推动 AI 能力形成外部智慧能源解决方案。</p></article>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">08 / Decision Rules</p>
-      <h2>协同与决策规则：分级分层 + 动态调级</h2>
+      <p class="kicker">08 / Strategic Governance</p>
+      <h2>战略方向类事项：核心小组决策</h2>
+      <div class="ops-flow">
+        <div class="panel">
+          <h3>建议机制</h3>
+          <div class="output-list">
+            <span>季度战略复盘会：审视方向、资源、目标是否需要调整</span>
+            <span>重大事项专题会：重大方向变化或重大资源需求时临时召开</span>
+            <span>围绕场景投资决策、组织调整、盈利模式共创、标杆项目试跑展开</span>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>输出结果</h3>
+          <div class="output-list">
+            <span>集团 AI 转型路线图</span>
+            <span>年度目标</span>
+            <span>阶段里程碑</span>
+            <span>重点任务清单</span>
+            <span>决策纪要</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">09 / Opportunity & Investment</p>
+      <h2>场景机会与投资：赛马 + 分级决策</h2>
       <div class="decision-lanes">
-        <article class="lane" style="--tone: var(--blue);"><div class="lane-top">战略级</div><div class="lane-body"><h3>集团重点标杆 / 跨板块协同</h3><p>由转型小组牵头对齐高管层，按 ROI 与战略价值双维度评分。</p></div><div class="lane-foot">匹配集团级资源</div></article>
-        <article class="lane" style="--tone: var(--green);"><div class="lane-top">业务级</div><div class="lane-body"><h3>单部门刚需 / 不跨板块</h3><p>业务部门按紧急度和投入产出比排序，小组只做准入核验。</p></div><div class="lane-foot">业务自驱推进</div></article>
-        <article class="lane" style="--tone: var(--amber);"><div class="lane-top">创新级</div><div class="lane-body"><h3>探索性 / 低投入</h3><p>开放 10% 年度 AI 资源池，符合准入规则即可快速试错。</p></div><div class="lane-foot">跑通后可动态升级</div></article>
+        <article class="lane" style="--tone: var(--green);">
+          <div class="lane-top">快速试点</div>
+          <div class="lane-body"><h3>低风险、低投入</h3><p>轻量备案，鼓励业务部门快速完成 MVP 验证和价值评估。</p></div>
+          <div class="lane-foot">业务自驱</div>
+        </article>
+        <article class="lane" style="--tone: var(--blue);">
+          <div class="lane-top">部门项目</div>
+          <div class="lane-body"><h3>明确部门价值</h3><p>部门资源先行验证，价值明确后进入集团场景池。</p></div>
+          <div class="lane-foot">部门牵头</div>
+        </article>
+        <article class="lane" style="--tone: var(--amber);">
+          <div class="lane-top">集团标杆</div>
+          <div class="lane-body"><h3>具备复制潜力</h3><p>由 AI 转型核心小组评审，推动标杆打造和规模复制。</p></div>
+          <div class="lane-foot">核心小组评审</div>
+        </article>
+        <article class="lane" style="--tone: var(--red);">
+          <div class="lane-top">重大投资</div>
+          <div class="lane-body"><h3>平台 / 算力 / 核心系统 / 外部合作</h3><p>纳入集团重大投资决策机制，匹配更高层级资源。</p></div>
+          <div class="lane-foot">集团投资决策</div>
+        </article>
       </div>
-      <p class="footnote">动态调级：MVP 跑通后可升级为战略级；战略级连续 6 个月不达预期则降级回收资源。</p>
     </section>
 
     <section class="slide">
-      <p class="kicker">09 / Evaluation</p>
-      <h2>成效评价：按阶段、按角色分层考核</h2>
-      <div class="eval-pyramid">
-        <div class="pyramid">
-          <div class="pyramid-row" style="--inset: 18%; --tone: var(--amber);"><b>沉淀复用阶段</b><span>可复制性、跨场景适配率、能力复用降本规模</span></div>
-          <div class="pyramid-row" style="--inset: 9%; --tone: var(--green);"><b>规模化推广阶段</b><span>使用率、功能渗透率、流程耗时压缩率</span></div>
-          <div class="pyramid-row" style="--inset: 0; --tone: var(--blue);"><b>MVP 验证阶段</b><span>只看核心价值达标率，不提前要求覆盖度</span></div>
+      <p class="kicker">10 / Change & Business Model</p>
+      <h2>组织变革与盈利模式：把 AI 做成大事</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>组织变革类事项：专项协调机制</h3>
+          <p>对涉及跨部门职责边界、流程重构、人员协同和能力配置的事项，由 AI 转型办公室牵头专题协调，明确业务 Owner、平台支撑方、数据责任方、技术交付方和验收责任方。</p>
         </div>
-        <div class="role-metrics">
-          <div class="metric-chip"><b>业务端</b><span>业务价值达成率</span></div>
-          <div class="metric-chip"><b>技术端</b><span>能力复用率、交付及时率</span></div>
-          <div class="metric-chip"><b>转型小组</b><span>全集团 AI 转型整体 ROI</span></div>
+        <div class="panel">
+          <h3>盈利模式类事项：商业模式共创机制</h3>
+          <p>对具备外部商业化潜力的 AI 能力和智慧能源场景，牵头产品、解决方案、销售、交付、财务、法务和数字化团队共创，明确目标客户、价值主张、交付形态、收费模式和标杆客户。</p>
         </div>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">10 / Sustainable Motion</p>
-      <h2>持续推进机制：双循环 + 绿色通道</h2>
-      <div class="loop-system">
-        <article class="loop-card" style="--tone: var(--blue);"><span class="icon-mark">小</span><h3>业务自驱小循环</h3><div class="loop-steps"><div class="loop-step"><span>1</span><span>场景提出</span></div><div class="loop-step"><span>2</span><span>MVP 验证</span></div><div class="loop-step"><span>3</span><span>上线迭代</span></div></div><p class="footnote">低于 50 万 / 10 人天的创新项目免审批，最快 7 天启动。</p></article>
-        <article class="loop-card" style="--tone: var(--green);"><span class="icon-mark">大</span><h3>集团赋能大循环</h3><div class="loop-steps"><div class="loop-step"><span>1</span><span>标准化打磨</span></div><div class="loop-step"><span>2</span><span>跨部门推广</span></div><div class="loop-step"><span>3</span><span>沉淀公共底座</span></div></div><p class="footnote">保留月度进度同步会、季度战略复盘会，减少不必要汇报审批。</p></article>
-      </div>
-    </section>
-
-    <section class="slide agenda-slide">
-      <p class="kicker">11 / Formal Agenda</p>
-      <h2>启动会正式议程</h2>
-      <div class="agenda-total"><strong>90min</strong><span>14:00-15:30，以共识确认和下一步行动闭环为目标</span></div>
-      <div class="agenda-list">
-        <article class="agenda-row"><span class="agenda-time">14:00-14:05</span><span class="agenda-duration">5min</span><span class="agenda-topic">开场与会议目标说明</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:05-14:15</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 转型背景与公司战略诉求</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:15-14:25</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 全面转型小组使命与定位</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:25-14:35</span><span class="agenda-duration">10min</span><span class="agenda-topic">小组组织架构与成员分工</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:35-14:45</span><span class="agenda-duration">10min</span><span class="agenda-topic">AI 转型总体路线图说明</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:45-14:55</span><span class="agenda-duration">10min</span><span class="agenda-topic">当前 AI 能力与已有基础盘点</span></article>
-        <article class="agenda-row"><span class="agenda-time">14:55-15:05</span><span class="agenda-duration">10min</span><span class="agenda-topic">行业 / 标杆案例分享</span></article>
-        <article class="agenda-row"><span class="agenda-time">15:05-15:15</span><span class="agenda-duration">10min</span><span class="agenda-topic">首批试点需求征集说明</span></article>
-        <article class="agenda-row"><span class="agenda-time">15:15-15:25</span><span class="agenda-duration">10min</span><span class="agenda-topic">工作机制、协同规则与答疑</span></article>
-        <article class="agenda-row"><span class="agenda-time">15:25-15:30</span><span class="agenda-duration">5min</span><span class="agenda-topic">近期行动计划与里程碑确认</span></article>
+      <p class="kicker">11 / Incentives</p>
+      <h2>配套组织激励方案</h2>
+      <div class="incentives">
+        <article class="incentive">
+          <h3>赛马制收益分成</h3>
+          <p>鼓励业务部门主动识别 AI 场景、推动试点落地，并把跑通场景转化为可量化收益。</p>
+          <div class="split"><span>70%</span><span>30%</span></div>
+          <p>业务部门业绩 / 集团 AI 转型公共基金</p>
+        </article>
+        <article class="incentive">
+          <h3>AI 参与度积分机制</h3>
+          <p>AI 转型不能只靠少数专家和 IT 部门，必须让业务骨干、流程负责人、一线人员真正参与进来。</p>
+        </article>
+        <article class="incentive">
+          <h3>杠杆放大与人均产出</h3>
+          <p>以效益放大、产出提升、流程压缩作为关键标志，定义“高韧性敏捷组织”的定标事件。</p>
+        </article>
       </div>
     </section>
 
     <section class="slide">
-      <p class="kicker">12 / 30-60-90 Plan</p>
-      <h2>近期行动节奏：30 / 60 / 90 天规划</h2>
-      <div class="timeline">
+      <p class="kicker">12 / 30-90-180 Plan</p>
+      <h2>明确短期行动节奏：30 / 90 / 180 天</h2>
+      <div class="roadmap">
         <article class="phase">
           <div class="day">30</div>
-          <h3>对齐与盘点</h3>
+          <h3>定组织、定任务、定清单</h3>
           <ul>
             <li>召开二次扩大会议</li>
-            <li>确定重点场景清单</li>
-            <li>完成准入规则与评估模板</li>
-          </ul>
-        </article>
-        <article class="phase">
-          <div class="day">60</div>
-          <h3>MVP 验证</h3>
-          <ul>
-            <li>启动 3-5 个首批试点</li>
-            <li>跑通业务验收闭环</li>
-            <li>沉淀平台与数据接入要求</li>
+            <li>明确参与部门与任务分工</li>
+            <li>建立场景池、能力池、问题清单</li>
           </ul>
         </article>
         <article class="phase">
           <div class="day">90</div>
-          <h3>复制与放大</h3>
+          <h3>跑机制、跑场景、跑闭环</h3>
           <ul>
-            <li>形成标杆案例包</li>
-            <li>确定推广节奏与资源池</li>
-            <li>完成季度战略复盘</li>
+            <li>形成重点场景组合</li>
+            <li>完成首批 MVP 验证和价值评估</li>
+            <li>跑通投资、验收、复盘机制</li>
+          </ul>
+        </article>
+        <article class="phase">
+          <div class="day">180</div>
+          <h3>拉流程、建平台、规模复制</h3>
+          <ul>
+            <li>拉通关键业务大流程</li>
+            <li>沉淀统一平台、数据与知识资产</li>
+            <li>形成集团级标杆和复制打法</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="slide agenda-slide">
+      <p class="kicker">13 / Formal Agenda</p>
+      <h2>启动会正式议程</h2>
+      <div class="agenda-total"><strong>90min</strong><span>14:00-15:30，以目标、组织、机制和行动闭环为主线</span></div>
+      <div class="agenda-list">
+        <article class="agenda-row"><span class="agenda-time">14:00-14:10</span><span class="agenda-duration">10min</span><span class="agenda-topic">开场与会议目标说明</span></article>
+        <article class="agenda-row"><span class="agenda-time">14:10-14:25</span><span class="agenda-duration">15min</span><span class="agenda-topic">AI 转型背景与公司战略诉求</span></article>
+        <article class="agenda-row"><span class="agenda-time">14:25-14:40</span><span class="agenda-duration">15min</span><span class="agenda-topic">AI 全面转型小组使命与定位</span></article>
+        <article class="agenda-row"><span class="agenda-time">14:40-14:55</span><span class="agenda-duration">15min</span><span class="agenda-topic">小组组织架构与成员分工</span></article>
+        <article class="agenda-row"><span class="agenda-time">14:55-15:15</span><span class="agenda-duration">20min</span><span class="agenda-topic">工作机制与协同规则</span></article>
+        <article class="agenda-row"><span class="agenda-time">15:15-15:30</span><span class="agenda-duration">15min</span><span class="agenda-topic">近期行动计划与里程碑</span></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">14 / Expanded Meeting</p>
+      <h2>后续扩大会议讨论内容</h2>
+      <div class="two-col">
+        <div class="panel">
+          <h3>扩大会议参与人员</h3>
+          <p>财经、HR、业务、数字化等关键成员进入扩大会议，明确各组织要做的事、交付物和责任边界。</p>
+        </div>
+        <div class="panel">
+          <h3>核心讨论事项</h3>
+          <p>讨论确定重点场景、近期行动计划、协同规则，并给参与部门分派任务，形成可跟踪、可复盘、可验收的行动闭环。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <p class="kicker">15 / First Wave Scenarios</p>
+      <h2>明确首批试点：3 类高价值、可复制项目</h2>
+      <div class="pilot-board">
+        <article class="pilot-card" style="--tone: var(--blue);">
+          <header><span class="badge">标</span><h3>高层可见的标杆场景</h3></header>
+          <ul>
+            <li>集团行业情报与战略分析助手</li>
+            <li>高管经营决策助手</li>
+            <li>重大项目 / 重点客户洞察助手</li>
+            <li>政策、竞品、市场动态分析助手</li>
+          </ul>
+        </article>
+        <article class="pilot-card" style="--tone: var(--green);">
+          <header><span class="badge">效</span><h3>业务高频刚需场景</h3></header>
+          <ul>
+            <li>标书 / 解决方案生成助手</li>
+            <li>会议纪要与任务追踪助手</li>
+            <li>知识库问答助手</li>
+            <li>产品 / 研发文档助手</li>
+            <li>合同 / 制度 / 流程问答助手</li>
+          </ul>
+        </article>
+        <article class="pilot-card" style="--tone: var(--amber);">
+          <header><span class="badge">基</span><h3>能力沉淀型场景</h3></header>
+          <ul>
+            <li>集团统一知识库</li>
+            <li>AI 应用入口平台</li>
+            <li>智能体广场、任务中心</li>
+            <li>权限体系与数据接入机制</li>
+            <li>AI 使用数据分析平台</li>
           </ul>
         </article>
       </div>
@@ -1559,13 +1312,13 @@
     <section class="slide closing">
       <p class="kicker">Next Step</p>
       <h2>下一步：围绕集团级大事，拉通关键流程，建设可持续放大的 AI 能力底座</h2>
-      <p>后续扩大会议重点明确集团级重大场景、跨部门流程重构、统一平台能力、数据与知识资产沉淀，以及可持续推进的组织机制。</p>
+      <p>后续扩大会议要明确集团级重大场景、跨部门流程重构、统一平台能力、数据与知识资产沉淀，以及可持续推进的组织机制。</p>
     </section>
   </main>
 
   <nav class="controls" aria-label="幻灯片控制">
     <button id="prevBtn" type="button" title="上一页" aria-label="上一页">‹</button>
-    <span class="counter" id="counter">1 / 13</span>
+    <span class="counter" id="counter">1 / 17</span>
     <button id="nextBtn" type="button" title="下一页" aria-label="下一页">›</button>
   </nav>
 
